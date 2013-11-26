@@ -2,7 +2,6 @@ SmsVerses::Application.routes.draw do
 
   resources :user_subscriptions
 
-
   devise_for :users
 
   # Sample resource route with options:
@@ -40,7 +39,7 @@ SmsVerses::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  root :to => 'user_subscriptions#index'
 
   # See how all your routes lay out with "rake routes"
 

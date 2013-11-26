@@ -5,9 +5,7 @@
     <th>Email</th>
     <th>Phone</th>
     <th>Is active</th>
-    <th>Remind at</th>
-    <th>Created at</th>
-    <th>Updated at</th>
+    <th>Remind Time</th>
     <th>Verse count</th>
     <th></th>
     <th></th>
@@ -19,9 +17,7 @@
     <td><%= user_subscription.email %></td>
     <td><%= user_subscription.phone %></td>
     <td><%= user_subscription.is_active %></td>
-    <td><%= user_subscription.remind_at %></td>
-    <td><%= user_subscription.created_at %></td>
-    <td><%= user_subscription.updated_at %></td>
+    <td><%= user_subscription.remind_hour %>:<%= user_subscription.remind_minute %></td>
     <td><%= user_subscription.verse_count %></td>
     <td><%= link_to 'Show', user_subscription %></td>
     <td><%= link_to 'Edit', edit_user_subscription_path(user_subscription) %></td>

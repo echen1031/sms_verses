@@ -24,16 +24,12 @@
     <%= f.check_box :is_active %>
   </div>
   <div class="field">
-    <%= f.label :remind_at %><br />
-    <%= f.datetime_select :remind_at %>
+    <%= f.label :remind_hour %><br />
+    <%= f.number_field :remind_hour %>
   </div>
   <div class="field">
-    <%= f.label :created_at %><br />
-    <%= f.datetime_select :created_at %>
-  </div>
-  <div class="field">
-    <%= f.label :updated_at %><br />
-    <%= f.datetime_select :updated_at %>
+    <%= f.label :remind_minute %><br />
+    <%= f.number_field :remind_minute %>
   </div>
   <div class="field">
     <%= f.label :verse_count %><br />
