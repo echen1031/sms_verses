@@ -8,10 +8,20 @@
 </head>
 <body>
 
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a href="#" class="brand"> Coming To Him </a>
+      </div>
+    </div>
+  </div>
 
-<%= yield %>
+  <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+  <%= yield %>
+  </div>
 
 </body>
 </html>
