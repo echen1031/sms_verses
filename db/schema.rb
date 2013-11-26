@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20131126180125) do
     t.boolean  "is_active",     :default => true
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-    t.integer  "verse_count"
     t.integer  "user_id"
     t.integer  "remind_hour"
     t.integer  "remind_minute"

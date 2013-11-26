@@ -6,7 +6,6 @@
     <th>Phone</th>
     <th>Is active</th>
     <th>Remind Time</th>
-    <th>Verse count</th>
     <th></th>
     <th></th>
     <th></th>
@@ -18,7 +17,6 @@
     <td><%= user_subscription.phone %></td>
     <td><%= user_subscription.is_active %></td>
     <td><%= user_subscription.remind_hour %>:<%= user_subscription.remind_minute %></td>
-    <td><%= user_subscription.verse_count %></td>
     <td><%= link_to 'Show', user_subscription %></td>
     <td><%= link_to 'Edit', edit_user_subscription_path(user_subscription) %></td>
     <td><%= link_to 'Destroy', user_subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>

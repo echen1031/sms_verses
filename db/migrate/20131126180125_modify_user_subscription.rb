@@ -4,6 +4,7 @@ class ModifyUserSubscription < ActiveRecord::Migration
   	remove_column :user_subscriptions, :remind_at
   	add_column :user_subscriptions, :remind_hour, :integer
   	add_column :user_subscriptions, :remind_minute, :integer
+        remove_column :user_subscriptions, :verse_count
   end
 
   def down
