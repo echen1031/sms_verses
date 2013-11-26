@@ -1,0 +1,35 @@
+<h1>Listing user_subscriptions</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Is active</th>
+    <th>Remind at</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Verse count</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_subscriptions.each do |user_subscription| %>
+  <tr>
+    <td><%= user_subscription.email %></td>
+    <td><%= user_subscription.phone %></td>
+    <td><%= user_subscription.is_active %></td>
+    <td><%= user_subscription.remind_at %></td>
+    <td><%= user_subscription.created_at %></td>
+    <td><%= user_subscription.updated_at %></td>
+    <td><%= user_subscription.verse_count %></td>
+    <td><%= link_to 'Show', user_subscription %></td>
+    <td><%= link_to 'Edit', edit_user_subscription_path(user_subscription) %></td>
+    <td><%= link_to 'Destroy', user_subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User subscription', new_user_subscription_path %>

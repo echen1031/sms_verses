@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Email:</b>
+  <%= @user_subscription.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @user_subscription.phone %>
+</p>
+
+<p>
+  <b>Is active:</b>
+  <%= @user_subscription.is_active %>
+</p>
+
+<p>
+  <b>Remind at:</b>
+  <%= @user_subscription.remind_at %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%= @user_subscription.created_at %>
+</p>
+
+<p>
+  <b>Updated at:</b>
+  <%= @user_subscription.updated_at %>
+</p>
+
+<p>
+  <b>Verse count:</b>
+  <%= @user_subscription.verse_count %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_subscription_path(@user_subscription) %> |
+<%= link_to 'Back', user_subscriptions_path %>

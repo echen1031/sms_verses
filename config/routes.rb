@@ -1,5 +1,8 @@
 SmsVerses::Application.routes.draw do
 
+  resources :user_subscriptions
+
+
   devise_for :users
 
   # Sample resource route with options:
