@@ -1,5 +1,7 @@
 <h1>Good Bible Verses</h1>
+<%= link_to 'New Bible Verse', new_bible_verse_path, class: 'btn btn-primary' %>
 
+<%= paginate @bible_verses %>
 <table class="table table-bordered table-striped">
   <tr>
     <th>Ref</th>
@@ -8,12 +10,9 @@
 
 <% @bible_verses.each do |bible_verse| %>
   <tr>
-    <td><%= bible_verse.reference %></td>
+    <td class="span2"><%= bible_verse.reference %></td>
     <td><%= bible_verse.content %></td>    
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Bible verse', new_bible_verse_path %>
+<%= paginate @bible_verses %>

@@ -2,7 +2,7 @@ class BibleVersesController < ApplicationController
   # GET /bible_verses
   # GET /bible_verses.json
   def index
-    @bible_verses = BibleVerse.all
+    @bible_verses = BibleVerse.page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

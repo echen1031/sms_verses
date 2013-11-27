@@ -1,6 +1,8 @@
 require 'csv'
 
 class BibleVerse < ActiveRecord::Base
+  paginates_per 50
+
   attr_accessible :book, :chapter_num, :content, :verse_num, :book_num, :reference
   validates_presence_of :book, :chapter_num, :content, :verse_num, :book_num, :reference
   validates_numericality_of :chapter_num, :verse_num, :book_num
