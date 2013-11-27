@@ -10,6 +10,5 @@ class CreateBibleVerses < ActiveRecord::Migration
 
       t.timestamps
     end
-    drop_table :verses
   end
 end

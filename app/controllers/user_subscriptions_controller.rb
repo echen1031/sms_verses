@@ -44,6 +44,7 @@ class UserSubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @user_subscription.save
+        UserMailer.welcome_email(@user_subscription.user).deliver
         format.html { redirect_to @user_subscription, notice: 'User subscription was successfully created.' }
         format.json { render json: @user_subscription, status: :created, location: @user_subscription }
       else
