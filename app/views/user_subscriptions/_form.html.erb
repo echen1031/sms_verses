@@ -1,8 +1,9 @@
 <%= form_for([current_user, @user_subscription]) do |f| %>
   <% if @user_subscription.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user_subscription.errors.count, "error") %> prohibited this user_subscription from being saved:</h2>
-
+      <h2>
+        <%= pluralize(@user_subscription.errors.count, "error") %> prohibited this user_subscription from being saved:
+      </h2>
       <ul>
       <% @user_subscription.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
