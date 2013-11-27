@@ -1,42 +1,25 @@
 <div class="page-header">
-  <h1>Manage Subscription</h1>
+<h1>Manage Subscription</h1>
 </div>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a href="#" class="brand"> Coming To Him </a>
-        <ul class="nav">
-          <li><%= link_to "Sign Out", destroy_user_session_path, :method => 'DELETE' %></li>
-      </div>
+<% @user_subscriptions.each do |user_subscription| %> 
+    <div class="user_subscription">
+        <br>Email</br>
+          <strong><%= user_subscription.email %></strong>
+        <br>Phone</br>
+          <strong><%= user_subscription.phone %></strong>
+        <br>Remind Time</br>
+          <strong><%= user_subscription.remind_hour %>:<%= user_subscription.remind_minute %></strong>
     </div>
-  </div>
 
-
-<table>
-  <tr>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Is active</th>
-    <th>Remind Time</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @user_subscriptions.each do |user_subscription| %>
-  <tr>
-    <td><%= user_subscription.email %></td>
-    <td><%= user_subscription.phone %></td>
-    <td><%= user_subscription.is_active %></td>
-    <td><%= user_subscription.remind_hour %>:<%= user_subscription.remind_minute %></td>
     <td><%= link_to 'Show', user_subscription %></td>
     <td><%= link_to 'Edit', edit_user_subscription_path(user_subscription) %></td>
     <td><%= link_to 'Destroy', user_subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<% end%>
 
-<br />
+<br>
+</br>
 
-<%= link_to 'New User subscription', new_user_subscription_path %>
+<div>
+<%= link_to 'Add a New subscription', new_user_subscription_path, class: "btn" %>
+</div>

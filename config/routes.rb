@@ -1,5 +1,8 @@
 SmsVerses::Application.routes.draw do
 
+  resources :verse_references
+
+
   resources :user_subscriptions
 
   devise_for :users
