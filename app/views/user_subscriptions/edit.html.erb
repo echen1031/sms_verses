@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @user_subscription %> |
-<%= link_to 'Back', user_subscriptions_path %>
+<%= link_to 'Show', user_user_subscription_path(current_user, @user_subscription) %> |
+<%= link_to 'Back', user_user_subscriptions_path(current_user) %>
