@@ -2,10 +2,11 @@ SmsVerses::Application.routes.draw do
 
   resources :bible_verses
 
-
-  resources :user_subscriptions
-
   devise_for :users
+
+  resources :users do   
+    resources :user_subscriptions
+  end
 
   # Sample resource route with options:
   #   resources :products do

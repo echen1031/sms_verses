@@ -11,7 +11,7 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <div class="brand"><%= link_to "Coming To Him", user_subscriptions_path %></div>
+        <div class="brand"><%= link_to "Coming To Him", user_user_subscriptions_path(current_user.id) %></div>
           <% if current_user.nil? %>
             <ul class="nav">
               <li class="navbar-inner"><%= link_to "Login", user_session_path %></li>

@@ -3,23 +3,28 @@
 </div>
 
 <% @user_subscriptions.each do |user_subscription| %> 
-    <div class="user_subscription">
-        <br>Email</br>
-          <strong><%= user_subscription.email %></strong>
-        <br>Phone</br>
-          <strong><%= user_subscription.phone %></strong>
-        <br>Remind Time</br>
-          <strong><%= user_subscription.remind_hour %>:<%= user_subscription.remind_minute %></strong>
-    </div>
-
-    <td><%= link_to 'Show', user_subscription %></td>
-    <td><%= link_to 'Edit', edit_user_subscription_path(user_subscription) %></td>
-    <td><%= link_to 'Destroy', user_subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <div class="user_subscription">
+      <br>Email</br>
+        <strong><%= user_subscription.email %></strong>
+      <br>Phone</br>
+        <strong><%= user_subscription.phone %></strong>
+      <br>Remind Time</br>
+        <strong><%= user_subscription.remind_hour %>:<%= user_subscription.remind_minute %></strong>
+  </div>
+  <td>
+    <%= link_to 'Show', user_user_subscription_path(current_user.id,  user_subscription.id) %>
+  </td>
+  <td>
+    <%= link_to 'Edit', edit_user_user_subscription_path(current_user.id, user_subscription.id) %>
+  </td>
+  <td>
+    <%= link_to 'Destroy', user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </td>
 <% end%>
 
 <br>
 </br>
 
 <div>
-<%= link_to 'Add a New subscription', new_user_subscription_path, class: "btn" %>
+<%= link_to 'Add a New subscription', new_user_user_subscription_path(current_user.id), class: "btn" %>
 </div>
