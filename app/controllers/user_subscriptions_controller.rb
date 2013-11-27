@@ -71,6 +71,8 @@ class UserSubscriptionsController < ApplicationController
 
   def send_now
     UserMailer.daily(current_user, current_user_subscription).deliver
+    redirect_to user_user_subscriptions_path(current_user),
+        notice: 'User Email was successfully sent.'
   end
 
   # DELETE /user_subscriptions/1
