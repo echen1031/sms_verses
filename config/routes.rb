@@ -1,6 +1,6 @@
 SmsVerses::Application.routes.draw do
 
-  resources :verse_references
+  resources :bible_verses
 
 
   resources :user_subscriptions

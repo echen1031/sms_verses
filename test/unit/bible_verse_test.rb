@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class VerseReferenceTest < ActiveSupport::TestCase
+class BibleVerseTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

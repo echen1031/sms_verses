@@ -1,0 +1,41 @@
+<%= form_for(@bible_verse) do |f| %>
+  <% if @bible_verse.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bible_verse.errors.count, "error") %> prohibited this bible_verse from being saved:</h2>
+
+      <ul>
+      <% @bible_verse.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :reference %><br />
+    <%= f.text_field :reference %>
+  </div>
+  <div class="field">
+    <%= f.label :book %><br />
+    <%= f.text_field :book %>
+  </div>
+  <div class="field">
+    <%= f.label :book_num %><br />
+    <%= f.number_field :book_num %>
+  </div>
+  <div class="field">
+    <%= f.label :chapter_num %><br />
+    <%= f.number_field :chapter_num %>
+  </div>
+  <div class="field">
+    <%= f.label :verse_num %><br />
+    <%= f.number_field :verse_num %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_field :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

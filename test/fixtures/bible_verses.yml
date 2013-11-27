@@ -1,13 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  reference: MyString
   book: MyString
-  chapter: 1
-  verse_number: 1
+  book_num: 1
+  chapter_num: 1
+  verse_num: 1
   content: MyString
 
 two:
+  reference: MyString
   book: MyString
-  chapter: 1
-  verse_number: 1
+  book_num: 1
+  chapter_num: 1
+  verse_num: 1
   content: MyString
