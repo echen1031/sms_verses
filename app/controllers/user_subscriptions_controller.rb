@@ -58,7 +58,6 @@ class UserSubscriptionsController < ApplicationController
   # PUT /user_subscriptions/1.json
   def update
     respond_to do |format|
-      UserMailer.start_subscription(current_user, current_user_subscription).deliver
       if current_user_subscription.update_attributes(params[:user_subscription])
         format.html { redirect_to user_user_subscription_path(current_user, current_user_subscription), notice: 'User subscription was successfully updated.' }
         format.json { head :no_content }
@@ -70,7 +69,7 @@ class UserSubscriptionsController < ApplicationController
   end
 
   def send_now
-    UserMailer.daily(current_user, current_user_subscription).deliver
+    current_user_subscription.send_now
     redirect_to user_user_subscriptions_path(current_user),
         notice: 'User Email was successfully sent.'
   end

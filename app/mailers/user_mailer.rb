@@ -15,10 +15,10 @@ class UserMailer < ActionMailer::Base
     mail(to: @user_subscription.email, subject: 'Goodbye')
   end
 
-  def daily(user, user_subscription)
+  def daily(user, user_subscription, verse)
   	@user = user
     @user_subscription = user_subscription
-    @bible_verse = BibleVerse.offset(rand(BibleVerse.count)).first
+    @bible_verse = verse
     @url = 'http://comingtohim.com/login'
     mail(to: @user_subscription.email, subject: 'Daily Verse')
   end

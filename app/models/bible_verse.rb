@@ -11,7 +11,15 @@ class BibleVerse < ActiveRecord::Base
   	CSV.foreach("config/fixtures/verses.txt", {:col_sep => "\t", :headers => true}) do |row|
   		verse_hash = row.to_hash.reject{|k,v|['REFID', 'memorize'].include? k}
   		BibleVerse.create(verse_hash)  		
-	end
+	  end
+  end
+
+  def self.random
+    BibleVerse.offset(rand(BibleVerse.count)).first
+  end
+
+  def message
+    reference+':'+content
   end
 end
 

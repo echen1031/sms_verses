@@ -24,6 +24,8 @@ end
 gem 'jquery-rails'
 
 gem 'kaminari'
+gem 'ruby-sendhub'
+gem 'choices'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
