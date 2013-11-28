@@ -12,6 +12,9 @@
         <strong><%= user_subscription.remind_hour %>:<%= user_subscription.remind_minute %></strong>
   </div>
   <td>
+    <%= link_to 'Send Now', send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn' %>
+  </td>
+  <td>
     <%= link_to 'Show', user_user_subscription_path(current_user.id,  user_subscription.id) %>
   </td>
   <td>

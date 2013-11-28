@@ -5,7 +5,11 @@ SmsVerses::Application.routes.draw do
   devise_for :users
 
   resources :users do   
-    resources :user_subscriptions
+    resources :user_subscriptions do 
+      member do
+        get :send_now        
+      end
+    end
   end
 
   # Sample resource route with options:
