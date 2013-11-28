@@ -87,12 +87,10 @@ class UserSubscriptionsController < ApplicationController
   end
 
   private 
-  def current_user 
-    @user = User.find(params[:user_id])
-  end
 
   def current_user_subscription
+    @user = User.find(params[:user_id])
+    return nil if current_user != @user
     @user_subscription = UserSubscription.find(params[:id])
   end
-
 end

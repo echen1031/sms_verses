@@ -3,6 +3,13 @@ SmsVerses::Application.routes.draw do
   resources :bible_verses
 
   devise_for :users
+  devise_scope :user do
+    get '/logout' => 'devise/sessions#destroy'
+    get '/login' => 'devise/sessions#new'
+    get '/signout' => 'devise/sessions#destroy'
+    get '/signin' => 'devise/sessions#new'
+    get '/register' => 'users/registrations#new'
+  end
 
   resources :users do   
     resources :user_subscriptions do 
