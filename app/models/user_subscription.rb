@@ -12,18 +12,8 @@ class UserSubscription < ActiveRecord::Base
   end
 
   def send_now
-  	verse = BibleVerse::random
-  	self.send_email(verse) if self.email 
-  	self.send_phone(verse) if self.phone  	  
-  end
-
-  def send_email(verse)
-    begin
-      UserMailer.daily(self.user, self, verse).deliver 
-      logger.info('mailed')
-    rescue Net::SMTPUnknownError => e
-      logger.info('Not mailed')
-      logger.error(e)
-    end
+  	bible_verse = BibleVerse::random
+  	EmailVerseWorker.perform_async(self.id, bible_verse.id) if self.email 
+  	TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone and self.sms_id
   end  
 end

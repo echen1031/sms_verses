@@ -1,4 +1,7 @@
+require 'sidekiq/web'
+
 SmsVerses::Application.routes.draw do
+  mount Sidekiq::Web, at: '/sidekiq'
 
   root :to => 'user_subscriptions#index'
   resources :bible_verses
