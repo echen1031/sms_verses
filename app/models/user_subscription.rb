@@ -2,7 +2,7 @@ class UserSubscription < ActiveRecord::Base
   require_dependency 'user_subscription/sendhub'
   include UserSubscription::Sendhub
 
-  attr_accessible :email, :is_active, :phone, :remind_hour, :remind_minute, :sms_id
+  attr_accessible :email, :is_active, :phone, :remind_hour, :sms_id
   belongs_to :user
 
   before_validation :normalize_phone
