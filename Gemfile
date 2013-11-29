@@ -30,7 +30,7 @@ gem 'choices'
 # if you require 'sinatra' you get the DSL extended to Object
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'slim'
-gem 'sidekiq-pro'
+gem 'sidekiq'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
