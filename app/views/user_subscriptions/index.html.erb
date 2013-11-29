@@ -14,14 +14,13 @@
   </tr>
   <% @user_subscriptions.each do |user_subscription| %> 
     <tr>
-      <td></td>
+      <td><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn' %></td>
       <td><%= user_subscription.email %></td>
       <td><%= user_subscription.phone %></td>
       <td><%= user_subscription.remind_hour %></td>
       <td>
       <%= link_to 'Send Now', send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
-      <%= link_to 'Edit', edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn' %>
-      <%= link_to 'Unscribe', user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+      <%= link_to 'Unsubscribe', user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
       </td>
     </tr>
   <% end %>    
