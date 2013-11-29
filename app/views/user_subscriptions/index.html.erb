@@ -2,26 +2,27 @@
 <h1>Manage Subscription</h1>
 </div>
 
-<div>
 <%= link_to 'Add a New subscription', new_user_user_subscription_path(current_user.id), class: "btn btn-primary" %>
-</div>
-
-<% @user_subscriptions.each do |user_subscription| %> 
-  <div class="user_subscription">
-      <br>Email</br>
-        <strong><%= user_subscription.email %></strong>
-      <br>Phone</br>
-        <strong><%= user_subscription.phone %></strong>
-      <br>Remind Time</br>
-        <strong><%= user_subscription.remind_hour %></strong>
-  </div>
-  <td>
-    <%= link_to 'Send Now', send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
-  </td>
-  <td>
-    <%= link_to 'Edit', edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn' %>
-  </td>
-  <td>
-    <%= link_to 'Unscribe', user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
-  </td>
-<% end%>
+<hr>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th></th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Remind Time</th>
+    <th></th>    
+  </tr>
+  <% @user_subscriptions.each do |user_subscription| %> 
+    <tr>
+      <td></td>
+      <td><%= user_subscription.email %></td>
+      <td><%= user_subscription.phone %></td>
+      <td><%= user_subscription.remind_hour %></td>
+      <td>
+      <%= link_to 'Send Now', send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn' %>
+      <%= link_to 'Unscribe', user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+      </td>
+    </tr>
+  <% end %>    
+</table>

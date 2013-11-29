@@ -31,6 +31,7 @@ gem 'choices'
 gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'slim'
 gem 'sidekiq'
+gem 'whenever', :require => false
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
