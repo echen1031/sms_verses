@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131129224714) do
-=======
-ActiveRecord::Schema.define(:version => 20131129213412) do
->>>>>>> 6d68f85ed5b1bd44e931c4daccc4f137d88f6844
 
   create_table "bible_verses", :force => true do |t|
     t.string   "reference"
@@ -64,14 +60,5 @@ ActiveRecord::Schema.define(:version => 20131129213412) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "verse_references", :force => true do |t|
-    t.string   "book"
-    t.integer  "chapter"
-    t.integer  "verse_number"
-    t.string   "content"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
 
 end
