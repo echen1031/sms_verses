@@ -1,6 +1,6 @@
 defaults: &defaults
   sendhub:
-    api_key: '313095995b2ebb6f93e6ef4a3ea198d6338676d2'
+    api_key: '	'
     phone: '4047176779'
 
 development:
