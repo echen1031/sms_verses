@@ -1,0 +1,24 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="brand">
+        <% if current_user.nil? %>
+          "Coming To Him"
+        <% else %>
+          <%= link_to "Coming To Him", user_user_subscriptions_path(current_user.id) %>
+        <% end %> 
+      </div>
+      <% if current_user.nil? %>
+        <ul class="nav">
+          <li class="navbar-inner"><%= link_to "Login", user_session_path %></li>
+        </ul>
+      <% else %>
+        <ul class="nav">
+          <li class="navbar-inner"><%= link_to "Logout", destroy_user_session_path, :method => 'DELETE' %></li>
+          <li class="navbar-inner"><%= link_to "Verse of the Day", bible_verses_path %></li>
+        </ul>
+       <% end %>
+      </div>
+    </div>
+  </div>
+</div>
