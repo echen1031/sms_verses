@@ -27,11 +27,7 @@ class UserMailer < ActionMailer::Base
   	@user = user
     @user_subscription = user_subscription
     @bible_verse = verse
-    @url = 'http://comingtohim.com/login'
-    begin
-      mail(to: @user_subscription.email, subject: 'Daily Verse')
-    rescue Net::SMTPUnknownError => e
-      logger.error(e)
-    end
+    @url = 'http://comingtohim.com/login'    
+    mail(to: @user_subscription.email, subject: 'Daily Verse')    
   end
 end

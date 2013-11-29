@@ -6,7 +6,7 @@ class UserSubscription < ActiveRecord::Base
   belongs_to :user
 
   before_validation :normalize_phone
-    
+
   def normalize_phone
   	self.phone = self.phone.gsub(/\D/, '') unless self.phone.nil?  	
   end
@@ -18,7 +18,12 @@ class UserSubscription < ActiveRecord::Base
   end
 
   def send_email(verse)
-  	logger.info('mailed')
-  	UserMailer.daily(self.user, self, verse).deliver 
+    begin
+      UserMailer.daily(self.user, self, verse).deliver 
+      logger.info('mailed')
+    rescue Net::SMTPUnknownError => e
+      logger.info('Not mailed')
+      logger.error(e)
+    end
   end  
 end

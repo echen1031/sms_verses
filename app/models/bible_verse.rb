@@ -18,8 +18,8 @@ class BibleVerse < ActiveRecord::Base
     BibleVerse.offset(rand(BibleVerse.count)).first
   end
 
-  def message
-    reference+':'+content
+  def text_message
+    reference+'-'+content
   end
 end
 
