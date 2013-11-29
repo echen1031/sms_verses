@@ -5,14 +5,22 @@ class UserMailer < ActionMailer::Base
     @user = user
     @user_subscription = user_subscription
     @url = 'http://comingtohim.com/login'
-    mail(to: @user_subscription.email, subject: 'Welcome to Coming to Him')
+    begin
+      mail(to: @user_subscription.email, subject: 'Welcome to Coming to Him')
+    rescue Net::SMTPUnknownError => e
+      logger.error(e)
+    end
   end
 
   def end_subscription(user, user_subscription)
     @user = user
     @user_subscription = user_subscription
     @url = 'http://comingtohim.com/login'
-    mail(to: @user_subscription.email, subject: 'Goodbye')
+    begin
+      mail(to: @user_subscription.email, subject: 'Goodbye')
+    rescue Net::SMTPUnknownError => e
+      logger.error(e)
+    end
   end
 
   def daily(user, user_subscription, verse)
@@ -20,6 +28,10 @@ class UserMailer < ActionMailer::Base
     @user_subscription = user_subscription
     @bible_verse = verse
     @url = 'http://comingtohim.com/login'
-    mail(to: @user_subscription.email, subject: 'Daily Verse')
+    begin
+      mail(to: @user_subscription.email, subject: 'Daily Verse')
+    rescue Net::SMTPUnknownError => e
+      logger.error(e)
+    end
   end
 end

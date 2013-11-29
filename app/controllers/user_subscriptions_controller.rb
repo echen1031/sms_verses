@@ -41,7 +41,7 @@ class UserSubscriptionsController < ApplicationController
   # POST /user_subscriptions.json
   def create
     @user_subscription = UserSubscription.new(params[:user_subscription])
-
+    @user_subscription.user_id = current_user.id
     respond_to do |format|
       if @user_subscription.save
         UserMailer.start_subscription(current_user, @user_subscription).deliver
@@ -77,7 +77,7 @@ class UserSubscriptionsController < ApplicationController
   # DELETE /user_subscriptions/1
   # DELETE /user_subscriptions/1.json
   def destroy
-    UserMailer.end_subscription(current_user, current_user_subscription).deliver
+    #UserMailer.end_subscription(current_user, current_user_subscription).deliver
     current_user_subscription.destroy
     respond_to do |format|
       format.html { redirect_to user_user_subscriptions_url(current_user) }
