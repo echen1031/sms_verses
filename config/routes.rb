@@ -1,5 +1,6 @@
 SmsVerses::Application.routes.draw do
 
+  root :to => 'home#index'
   resources :bible_verses
 
   devise_for :users
@@ -54,7 +55,6 @@ SmsVerses::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'user_subscriptions#index'
 
   # See how all your routes lay out with "rake routes"
 
