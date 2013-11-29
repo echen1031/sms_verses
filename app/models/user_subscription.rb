@@ -31,12 +31,8 @@ class UserSubscription < ActiveRecord::Base
   end
 
   def send_email(verse)
-  	begin
-  		logger.info('mailed')
-  		UserMailer.daily(self.user, self, verse).deliver 
-  	rescue Net::SMTPUnknownError => e
-  		logger.error(e)
-  	end
+  	logger.info('mailed')
+  	UserMailer.daily(self.user, self, verse).deliver 
   end
 
   def send_phone(verse)
