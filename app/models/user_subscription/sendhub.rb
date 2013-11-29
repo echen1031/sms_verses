@@ -2,9 +2,15 @@ require 'active_support/concern'
 module UserSubscription::Sendhub
   extend ActiveSupport::Concern
   included do
-    after_save :set_sms_id, :refresh_sms_ids
+    after_save :update_sendhub_account
 
-    def set_sms_id
+    def update_sendhub_account
+      UpdateSendhubWorker.perform_async(self.id)
+    end
+
+    #executed by workers
+    def save_sendhub_user
+      logger.info 'save_sendhub_user'
       return if self.phone.nil?      
       if self.sms_id.nil?
         sendhub.post_contacts({ :name => self.email, :number => self.phone})
@@ -13,7 +19,9 @@ module UserSubscription::Sendhub
       end         
     end
 
-    def refresh_sms_ids
+    #executed by workers
+    def refresh_sendhub_ids
+      logger.info 'refresh_sendhub_ids'
       contacts = sendhub.get_contacts
       contacts['objects'].each do |contact_hash|      
         sms_id = contact_hash['id']        
