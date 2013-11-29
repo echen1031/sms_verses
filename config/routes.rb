@@ -1,6 +1,6 @@
 SmsVerses::Application.routes.draw do
 
-  root :to => 'home#index'
+  root :to => 'user_subscriptions#index'
   resources :bible_verses
 
   devise_for :users
