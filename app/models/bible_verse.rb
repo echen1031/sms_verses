@@ -19,7 +19,7 @@ class BibleVerse < ActiveRecord::Base
   end
 
   def text_message
-    reference+'-'+content
+    reference+' - '+content
   end
 end
 
