@@ -3,7 +3,7 @@ require 'sidekiq/web'
 SmsVerses::Application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
-  root :to => 'user_subscriptions#index'
+  root :to => 'home#index'
   resources :bible_verses
 
   devise_for :users
