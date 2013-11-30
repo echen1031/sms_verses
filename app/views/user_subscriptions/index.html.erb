@@ -2,14 +2,14 @@
 <h1>Manage Subscription</h1>
 </div>
 
-<%= link_to 'Add a New subscription', new_user_user_subscription_path(current_user.id), class: "btn btn-primary" %>
+<%= link_to 'Add New Subscription', new_user_user_subscription_path(current_user.id), class: "btn btn-primary" %>
 <hr>
 <table class="table table-bordered table-striped">
   <tr>
     <th></th>
     <th>Email</th>
     <th>Phone</th>
-    <th>Remind Time</th>
+    <th>Remind hour</th>
     <th></th>    
   </tr>
   <% @user_subscriptions.each do |user_subscription| %> 
