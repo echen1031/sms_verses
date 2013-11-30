@@ -2,7 +2,7 @@
   <div class="navbar-inner">
     <div class="container">
       <div class="brand">
-          Coming To Him
+          <%= link_to "Coming To Him", root_path %>
       </div>
       <% if current_user.nil? %>
         <ul class="nav">
@@ -10,8 +10,8 @@
         </ul>
       <% else %>
         <ul class="nav">
-          <li class="navbar-inner"><%= link_to "Manage my account", user_user_subscriptions_path(current_user.id)  %></li>
-          <li class="navbar-inner"><%= link_to "Verse of the Day", bible_verses_path %></li>
+          <li class="navbar-inner"><%= link_to "My Subscription", user_user_subscriptions_path(current_user.id)  %></li>
+          <li class="navbar-inner"><%= link_to "Verses", bible_verses_path %></li>
           <li class="navbar-inner"><%= link_to "Logout", destroy_user_session_path, :method => 'DELETE' %></li>
         </ul>
        <% end %>
