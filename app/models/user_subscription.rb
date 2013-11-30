@@ -19,5 +19,14 @@ class UserSubscription < ActiveRecord::Base
 
   def self.schedule_all
     logger.info 'schedule_all'
+    bible_verse = BibleVerse::random
+    UserSubscription.all.each do |us|
+      next if us.remind_hour.nil?
+      scheduled_at = DateTime.now.beginning_of_day.advance(:hours => us.remind_hour)
+      next if scheduled_at < DateTime.now
+      logger.info("subscription #{us.id} is scheduled at #{scheduled_at}")
+      EmailVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.email
+      TextVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.phone and us.sms_id            
+    end
   end
 end
