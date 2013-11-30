@@ -11,12 +11,3 @@
  *= require_self
  *= require_tree .
  */
-body {
-      padding-top: 40px;
-      margin: 0;
-      background: url('https://s3-us-west-2.amazonaws.com/comingtohim/stoneshot.png');
-      background-size: 1440px 800px;
-      background-repeat:no-repeat;
-      display: compact;
-      font: 13px/18px "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
