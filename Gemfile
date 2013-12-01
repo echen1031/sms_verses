@@ -10,6 +10,8 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'timezone'
 gem 'simple_form'
+gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

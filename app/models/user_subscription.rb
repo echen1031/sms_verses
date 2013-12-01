@@ -3,6 +3,13 @@ class UserSubscription < ActiveRecord::Base
   include UserSubscription::Sendhub
 
   attr_accessible :email, :phone, :remind_hour, :sms_id, :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7, :time_zone
+  validates_numericality_of :phone, :remind_hour
+  validates :email, :email_format => {:message => 'does no look like an email address'}
+  validates :phone, format: { with: /\d{10}/, message: "bad format" }
+  validate :has_either_email_or_phone, :has_at_least_one_day_selected
+#  validates :time_zone, inclusion: { in: %w(small medium large),
+#                                        message: "Invalid time zone" }
+
   belongs_to :user
 
   before_validation :normalize_phone
@@ -16,6 +23,16 @@ class UserSubscription < ActiveRecord::Base
   	EmailVerseWorker.perform_async(self.id, bible_verse.id) if self.email 
   	TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone and self.sms_id
   end  
+
+  def has_either_email_or_phone
+    errors.add(:email, "Please enter either email or phone") if email.nil? and phone.nil?
+  end
+
+  def has_at_least_one_day_selected
+    if not [send_day_1, send_day_2, send_day_3, send_day_4, send_day_5, send_day_6, send_day_7].any?{|d|d}
+      errors.add(:send_day_1, "Please select at least one day")
+    end
+  end
 
   def self.schedule_all
     logger.info 'schedule_all'
