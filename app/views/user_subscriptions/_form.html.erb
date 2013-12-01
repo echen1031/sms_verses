@@ -12,24 +12,23 @@
     <div class="form">
       <%= f.input :email %>
       <%= f.input :phone %>
-      <%= f.input :sms_id %>
+      <%= f.hidden_field :sms_id, value: @user_subscription.sms_id %>
     </div>
+    <br>
 
-    <h3>Choose the days</h3>
-
-    <table class="table table-bordered table-striped table-condensed">
+    <table class="table table-bordered table-striped table-condensed checkbox_days">
       <tr>
         <th>Select All</th>
-        <th>Day 1</th>
-        <th>Day 2</th>
-        <th>Day 3</th>
-        <th>Day 4</th>
-        <th>Day 5</th>
-        <th>Day 6</th>
-        <th>Day 7</th>
+        <th>Sun</th>
+        <th>Mon</th>
+        <th>Tues</th>
+        <th>Wed</th>
+        <th>Thurs</th>
+        <th>Fri</th>
+        <th>Sat</th>
       </tr>
       <tr>
-        <td>Select All</td>
+        <td> <input id="check_all_days" type="checkbox"></td>
         <td><%= f.check_box :send_day_1 %></td>
         <td><%= f.check_box :send_day_2 %></td>
         <td><%= f.check_box :send_day_3 %></td>
@@ -41,12 +40,31 @@
     </table>
 
     <div class="form">
-      <%= f.input :time_zone, collection: Timezone::Zone.names %>
+      <%= f.input :time_zone, collection: ActiveSupport::TimeZone.us_zones %>
     </div>
     <div class="form">
-      <%= f.input :remind_hour, collection: 6..23 %>
+      <%= f.input :remind_hour, collection: 5..23 %>
     </div>
     <div class="actions">
       <%= f.submit 'Update', :class => 'btn btn-primary'%>
     </div>
+<% end %>
+
+<% content_for :bottom do %>
+  <script>
+    $( document ).ready(function() {
+      $('#check_all_days').click (function () {
+        var checkedStatus = this.checked;
+        $('.checkbox_days').find('td :checkbox').each(function () {
+          $(this).prop('checked', checkedStatus);
+        });
+      });
+      $('.checkbox_days td :checkbox').click (function() {
+        var checkedStatus = this.checked;
+        if (!checkedStatus) {
+          $('#check_all_days').prop('checked', false); 
+        }
+      });
+    });    
+  </script>
 <% end %>
