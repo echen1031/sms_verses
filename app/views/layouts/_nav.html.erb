@@ -2,19 +2,17 @@
   <div class="navbar-inner">
     <div class="container">
       <ul class="nav">
-        <li class="span2">
-          <li class="navbar-inner"><%= link_to "Coming To Him", root_path %></li>
+          <li class="brand"><%= link_to "Coming To Him", root_path %></li>
             <% if current_user.nil? %>
               <ul class="nav">
-              <li class="navbar-inner"><%= link_to "Login", user_session_path %></li>
+              <li class="navbar"><%= link_to "Login", user_session_path %></li>
             <% else %>
               <ul class="nav">
-                <li class="navbar-inner"><%= link_to "My Subscription", user_user_subscriptions_path(current_user.id)  %></li>
-                <li class="navbar-inner"><%= link_to "Verses", bible_verses_path %></li>
-                <li class="navbar-inner"><%= link_to "Logout", destroy_user_session_path, :method => 'DELETE' %></li>
+                <li class="navbar"><%= link_to "My Subscription", user_user_subscriptions_path(current_user.id)  %></li>
+                <li class="navbar"><%= link_to "Verses", bible_verses_path %></li>
+                <li class="navbar"><%= link_to "Logout", destroy_user_session_path, :method => 'DELETE' %></li>
               </ul>
             <% end %>
-        </li>
       </ul>
     </div>
   </div>
