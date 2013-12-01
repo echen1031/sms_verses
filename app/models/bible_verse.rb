@@ -7,8 +7,7 @@ class BibleVerse < ActiveRecord::Base
   validates_presence_of :book, :chapter_num, :content, :verse_num, :book_num, :reference
   validates_numericality_of :chapter_num, :verse_num, :book_num
   validates_uniqueness_of :reference
-  validates_uniqueness_of :verse_num,  scope => [:book_num, :chapter_num]
-
+  #validates_uniqueness_of :verse_num,  scope => [:book_num, :chapter_num]
 
   def self.load_from_file
   	CSV.foreach("config/fixtures/verses.txt", {:col_sep => "\t", :headers => true}) do |row|
