@@ -12,7 +12,7 @@ module UserSubscription::Sendhub
     def save_sendhub_user
       logger.info 'save_sendhub_user'
       return if self.phone.nil?      
-      if self.sms_id.nil?
+      if self.sms_id.nil? or self.sms_id == ""
         sendhub.post_contacts({ :name => self.email, :number => self.phone})
       else
         sendhub.put_contacts({ :name => self.email, :number => self.phone, :id => self.sms_id })
