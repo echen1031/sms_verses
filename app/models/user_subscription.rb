@@ -37,10 +37,13 @@ class UserSubscription < ActiveRecord::Base
 
   def self.schedule_all
     logger.info 'schedule_all'
-    bible_verse = BibleVerse::random
-    UserSubscription.all.each do |us|
+    UserSubscription.where("remind_hour IS NOT NULL").each do |us|
+      bible_verse = BibleVerse::random
       next if us.remind_hour.nil?
-      scheduled_at = DateTime.now.beginning_of_day.advance(:hours => us.remind_hour)
+      
+      scheduled_hour = (us.remind_hour == 99) ? (8..20).to_a.sample : us.remind_hour
+      scheduled_at = DateTime.now.beginning_of_day.advance(:hours => scheduled_hour)
+
       next if scheduled_at < DateTime.now
       logger.info("subscription #{us.id} is scheduled at #{scheduled_at}")
       EmailVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.email
