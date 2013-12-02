@@ -10,6 +10,9 @@
           <%= f.input :email %>
           <%= f.input :password %>
           <%= f.input :password_confirmation %>
+          <%= f.input :time_zone, collection: ActiveSupport::TimeZone.us_zones,
+          :value_method => :name, :label_method => :name, 
+          :include_blank => false, :selected => 'Pacific Time (US & Canada)' %>
         </div>
 
       <div><%= f.submit "Sign up" %></div>

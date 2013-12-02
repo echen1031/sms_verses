@@ -30,6 +30,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'ruby-sendhub'
 gem 'choices'
+gem 'geocoder'
 
 # if you require 'sinatra' you get the DSL extended to Object
 gem 'sinatra', '>= 1.3.0', :require => nil

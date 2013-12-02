@@ -2,7 +2,8 @@ class UserSubscription < ActiveRecord::Base
   require_dependency 'user_subscription/sendhub'
   include UserSubscription::Sendhub
 
-  attr_accessible :email, :phone, :remind_hour, :sms_id, :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7, :time_zone
+  attr_accessible :email, :phone, :remind_hour, :sms_id, :time_zone, 
+                  :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
   validates_numericality_of :phone, :remind_hour
   validates :email, :email_format => {:message => 'does no look like an email address'}
   validates :phone, format: { with: /\d{10}/, message: "bad format" }

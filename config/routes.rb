@@ -12,7 +12,7 @@ SmsVerses::Application.routes.draw do
     get '/login' => 'devise/sessions#new'
     get '/signout' => 'devise/sessions#destroy'
     get '/signin' => 'devise/sessions#new'
-    get '/register' => 'users/registrations#new'
+    get '/register' => 'users/registrations#new'    
   end
 
   resources :users do   
