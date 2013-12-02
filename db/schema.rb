@@ -64,4 +64,13 @@ ActiveRecord::Schema.define(:version => 20131202012136) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "verse_references", :force => true do |t|
+    t.string   "book"
+    t.integer  "chapter"
+    t.integer  "verse_number"
+    t.string   "content"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
 end
