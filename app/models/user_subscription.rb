@@ -8,19 +8,16 @@ class UserSubscription < ActiveRecord::Base
 
   attr_accessible :email, :phone, :remind_hour, :sms_id, :time_zone, 
                   :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
+  phony_normalize :phone, :default_country_code => 'US'
   validates_numericality_of :phone, :remind_hour
   validates :email, :email_format => {:message => 'does no look like an email address'}
-  validates :phone, format: { with: /\d{10}/, message: "bad format" }
+  validates :phone, :phony_plausible => true
   validates :remind_hour, inclusion: { in: (5..23).to_a+[RANDOM_HOUR]}
   validate :has_either_email_or_phone, :has_at_least_one_day_selected
 
   belongs_to :user
 
   before_validation :normalize_phone
-
-  def normalize_phone
-  	self.phone = self.phone.gsub(/\D/, '') unless self.phone.nil?  	
-  end
 
   def send_now
   	bible_verse = BibleVerse::random
