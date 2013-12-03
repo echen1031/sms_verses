@@ -17,7 +17,6 @@ class UserSubscription < ActiveRecord::Base
 
   belongs_to :user
 
-  before_validation :normalize_phone
 
   def send_now
   	bible_verse = BibleVerse::random
