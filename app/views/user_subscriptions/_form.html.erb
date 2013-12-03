@@ -39,16 +39,14 @@
       </tr>
     </table>
 
-    <div class="form">
-      <%= f.input :time_zone, collection: ActiveSupport::TimeZone.us_zones %>
-    </div>
-    <div class="form">
-      <%= f.input :remind_hour, collection: 5..23 %>
-    </div>
+        <div class="form">
+          <%= f.input :remind_hour, collection: UserSubscription::select_hours,
+                      :include_blank => false, :selected => '99' %>
+        </div>
     <div class="actions">
       <%= f.submit 'Update', :class => 'btn btn-primary'%>
     </div>
-<% end %>
+      <% end %>
 
 <% content_for :bottom do %>
   <script>

@@ -2,14 +2,17 @@ class UserSubscription < ActiveRecord::Base
   require_dependency 'user_subscription/sendhub'
   include UserSubscription::Sendhub
 
+  EARLIEST_HOUR = 5
+  LASTEST_HOUR = 23
+  RANDOM_HOUR = 99
+
   attr_accessible :email, :phone, :remind_hour, :sms_id, :time_zone, 
                   :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
   validates_numericality_of :phone, :remind_hour
   validates :email, :email_format => {:message => 'does no look like an email address'}
   validates :phone, format: { with: /\d{10}/, message: "bad format" }
+  validates :remind_hour, inclusion: { in: (5..23).to_a+[RANDOM_HOUR]}
   validate :has_either_email_or_phone, :has_at_least_one_day_selected
-#  validates :time_zone, inclusion: { in: %w(small medium large),
-#                                        message: "Invalid time zone" }
 
   belongs_to :user
 
@@ -49,5 +52,9 @@ class UserSubscription < ActiveRecord::Base
       EmailVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.email
       TextVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.phone and us.sms_id            
     end
+  end
+
+  def self.select_hours
+    [['Random', RANDOM_HOUR]] + (EARLIEST_HOUR..LASTEST_HOUR).to_a.map {|h| [Time.parse("#{h}:00").strftime("%l %P"), h ] }
   end
 end
