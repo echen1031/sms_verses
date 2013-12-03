@@ -5,7 +5,7 @@ class UserSubscriptionsController < ApplicationController
   # GET /user_subscriptions
   # GET /user_subscriptions.json
   def index
-    @user_subscriptions = UserSubscription.all
+    @user_subscriptions = UserSubscription.where(:user_id => current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
