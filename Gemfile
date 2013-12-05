@@ -58,3 +58,5 @@ group :development do
 	gem 'pry-rails'
   	gem 'pry-nav'
 end
+
+gem 'rails_12factor', group: :production
