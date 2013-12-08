@@ -1,26 +1,33 @@
 <div class="page-header">
-<h1>My Subscription</h1>
+
+<% if current_user and current_user.user_subscription.nil? %>
+  <h1><%='Add Subscription'%></h1>
+<% else %>
+  <h1><%='My Subscription'%></h1>
+<% end %>
 </div>
 
-<%= link_to 'Add New Subscription', new_user_user_subscription_path(current_user.id), class: "btn btn-primary" %>
+<% if current_user and current_user.user_subscription.nil? %>
+  <%= link_to 'New Subscription', new_user_user_subscription_path(current_user.id), class: "btn btn-primary" %>
+<% end %>
 <hr>
 <table class="table table-bordered table-striped">
   <tr>
     <th></th>
     <th>Email</th>
     <th>Phone</th>
-    <th>Remind hour</th>
+    <th>Send Time</th>
     <th></th>    
   </tr>
   <% @user_subscriptions.each do |user_subscription| %> 
     <tr>
-      <td><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn' %></td>
+      <td><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-success' %></td>
       <td><%= user_subscription.email %></td>
       <td><%= user_subscription.phone %></td>
       <td><%= user_subscription.remind_hour %></td>
       <td>
-      <%= link_to 'Send Now', send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
-      <%= link_to 'Unsubscribe', user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+        <%= link_to '<i class="icon-circle-arrow-up"></i> Send Test'.html_safe, send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
+      <%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
       </td>
     </tr>
   <% end %>    
