@@ -41,10 +41,16 @@
 
         <div class="form">
           <%= f.input :remind_hour, collection: UserSubscription::select_hours,
-                      :include_blank => false, :selected => '99' %>
+                      :include_blank => false %>
         </div>
+    <hr>
     <div class="actions">
-      <%= f.submit 'Update', :class => 'btn btn-primary'%>
+      <% if @user_subscription.new_record? %>
+        <%= f.submit 'Create', :class => 'btn btn-primary'%>
+      <% else %>
+        <%= f.submit 'Update', :class => 'btn btn-primary'%>
+        <%= link_to '<i class="icon-circle-arrow-left"></i> Back'.html_safe, user_user_subscriptions_path(current_user), :class => 'btn btn-success' %>
+      <% end %>
     </div>
       <% end %>
 
