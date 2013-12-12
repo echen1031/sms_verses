@@ -65,6 +65,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    font-awesome-sass (4.0.2)
+      sass-rails (>= 3.1.1)
     geocoder (1.1.8)
     hashie (2.0.5)
     hike (1.2.3)
@@ -205,6 +207,7 @@ DEPENDENCIES
   choices
   coffee-rails (~> 3.2.1)
   devise
+  font-awesome-sass
   geocoder
   jquery-rails
   kaminari

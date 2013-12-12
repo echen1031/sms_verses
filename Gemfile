@@ -13,7 +13,7 @@ gem 'timezone'
 gem 'simple_form'
 gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
 gem 'phony_rails'
-
+gem 'font-awesome-sass'
 
 # Gems used only for assets and not required
 # in production environments by default.
