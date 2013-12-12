@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211073622) do
+ActiveRecord::Schema.define(:version => 20131212035331) do
 
   create_table "bible_verses", :force => true do |t|
     t.string   "book"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20131211073622) do
     t.datetime "updated_at",  :null => false
     t.string   "testament"
     t.boolean  "selected"
+    t.string   "version"
   end
 
   create_table "user_subscriptions", :force => true do |t|

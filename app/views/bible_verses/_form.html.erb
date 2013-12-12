@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :reference %><br />
-    <%= f.text_field :reference %>
-  </div>
-  <div class="field">
     <%= f.label :book %><br />
     <%= f.text_field :book %>
   </div>
@@ -34,6 +30,10 @@
   <div class="field">
     <%= f.label :content %><br />
     <%= f.text_field :content %>
+  </div>
+  <div class="field">
+    <%= f.label :version  %><br />
+    <%= f.text_field :version %>
   </div>
   <div class="actions">
     <%= f.submit %>

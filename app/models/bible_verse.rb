@@ -14,7 +14,7 @@ class BibleVerse < ActiveRecord::Base
     'Titus', 'Philemon', 'Hebrews', 'James',  '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 
     'Revelation']
   
-  attr_accessible :book, :chapter_num, :content, :verse_num, :book_num, :testament, :selected
+  attr_accessible :book, :chapter_num, :content, :verse_num, :book_num, :testament, :selected, :version
   validates_presence_of :book, :chapter_num, :content, :verse_num, :book_num
   validates_numericality_of :chapter_num, :verse_num, :book_num
   validates :testament, inclusion: { in: ['new', 'old']}
