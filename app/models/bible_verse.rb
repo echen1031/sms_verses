@@ -15,23 +15,18 @@ class BibleVerse < ActiveRecord::Base
     'Revelation']
   
   attr_accessible :book, :chapter_num, :content, :verse_num, :book_num, :testament, :selected, :version
+
+  scope :selected, where(selected: true)
+  scope :ordered, order(' bible_verses.book_num asc, 
+                          bible_verses.chapter_num asc, 
+                          bible_verses.verse_num asc')
+
   validates_presence_of :book, :chapter_num, :content, :verse_num, :book_num
   validates_numericality_of :chapter_num, :verse_num, :book_num
   validates :testament, inclusion: { in: ['new', 'old']}
   #validates_uniqueness_of :verse_num,  scope => [:book_num, :chapter_num]
 
   before_validation :set_book_num
-
-  def self.load_from_file
-  	CSV.foreach("config/fixtures/verses.txt", {:col_sep => "\t", :headers => true}) do |row|
-  		verse_hash = row.to_hash.reject{|k,v|['REFID', 'memorize'].include? k}
-      bible_verse = BibleVerse.find_or_initialize_by_testament_and_book_and_chapter_num_and_verse_num(
-            :book_num => verse_hash['book_num'], 
-            :chapter_num => verse_hash['chapter_num'], 
-            :verse_num => verse_hash['verse_num'])
-      bible_verse.update_attributes(selected: true)
-	  end
-  end
 
   def self.random
     BibleVerse.offset(rand(BibleVerse.count)).first
@@ -53,6 +48,23 @@ class BibleVerse < ActiveRecord::Base
   def set_book_num
     self.chapter_num = 1 if chapter_num.nil?
     self.book_num = book_to_index[book]    
+  end
+  
+  def self.write_selected_to_file
+    CSV.open("config/fixtures/verses.csv", "w") do |csv|
+      BibleVerse.selected.ordered.each do |v|
+        csv << [v.book, v.chapter_num, v.verse_num].map(&:to_s)
+      end
+    end
+  end
+
+  def self.load_selected_from_file
+    BibleVerse.update_all(selected: false)
+    CSV.foreach("config/fixtures/verses.csv") do |row|
+      bible_verse = BibleVerse.find_or_initialize_by_book_and_chapter_num_and_verse_num(
+            :book => row[0], :chapter_num => row[1], :verse_num => row[2])    
+      bible_verse.update_attributes(selected: true) 
+    end    
   end
 end
 

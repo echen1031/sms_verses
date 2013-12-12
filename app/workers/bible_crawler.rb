@@ -32,7 +32,7 @@ class BibleCrawler
       doc.css('#content p.verses').each do |entry|
         v = entry.css('b.versenum').children.first.content.to_i
         bible_verse = BibleVerse.find_or_initialize_by_testament_and_book_and_chapter_num_and_verse_num(
-            :testament => 'old', 
+            :testament => 'new', 
             :book => b, 
             :chapter_num => c, 
             :verse_num => v)
@@ -65,7 +65,7 @@ class BibleCrawler
       doc.css('#content p.verses').each do |entry|
         v = entry.css('b.versenum').children.first.content.to_i
         bible_verse = BibleVerse.find_or_initialize_by_testament_and_book_and_chapter_num_and_verse_num(
-            :testament => 'new', 
+            :testament => 'old', 
             :book => b, 
             :chapter_num => c, 
             :verse_num => v)
