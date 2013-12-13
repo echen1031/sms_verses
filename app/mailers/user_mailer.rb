@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def daily_text_message(user_subscription, bible_verse)
-    mail(to: user_subscription.to_email_for_sms_message) do |format|
+    mail(to: user_subscription.to_email_for_sms_message, subject: 's@comingtohim.com') do |format|
       format.text { render text: bible_verse.text_message }
     end
   end
