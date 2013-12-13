@@ -14,7 +14,7 @@ class BibleVerse < ActiveRecord::Base
     'Titus', 'Philemon', 'Hebrews', 'James',  '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 
     'Revelation']
   
-  attr_accessible :book, :chapter_num, :content, :verse_num, :book_num, :testament, :selected, :version
+  attr_accessible :book, :chapter_num, :content, :verse_num, :book_num, :testament, :selected, :version, :char_num
 
   scope :selected, where(:selected => true)
   scope :ordered, order(' bible_verses.book_num asc, 

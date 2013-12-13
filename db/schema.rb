@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212035331) do
+ActiveRecord::Schema.define(:version => 20131213064903) do
 
   create_table "bible_verses", :force => true do |t|
     t.string   "book"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20131212035331) do
     t.string   "testament"
     t.boolean  "selected"
     t.string   "version"
+    t.integer  "char_count"
   end
 
   create_table "user_subscriptions", :force => true do |t|
