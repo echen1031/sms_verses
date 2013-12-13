@@ -10,10 +10,10 @@ class UserSubscription < ActiveRecord::Base
   validates_numericality_of :phone, :remind_hour
   validates :email, :email_format => {:message => 'does no look like an email address'}
   validates :phone, :phony_plausible => true
-  validates :remind_hour, inclusion: { in: (5..23).to_a+[RANDOM_HOUR]}
-  validate :has_either_email_or_phone, :has_at_least_one_day_selected
   validates_inclusion_of :phone_carrier, :in => Rails.configuration.phone_carriers.keys
-
+  validates_inclusion_of :remind_hour, :in => (5..23).to_a+[RANDOM_HOUR]
+  validate :has_either_email_or_phone, :has_at_least_one_day_selected
+  
   belongs_to :user
   
   after_create :send_welcome_email
@@ -31,8 +31,7 @@ class UserSubscription < ActiveRecord::Base
 
   #sending
   def to_email_for_sms_message
-    email_domain = Rails.configuration.phone_carriers[self.phone_carrier].domain
-    self.phone[1..-1]+'@'+email_domain
+    self.phone[1..-1]+'@'+Rails.configuration.phone_carriers[self.phone_carrier].domain
   end
 
   def send_welcome_email
