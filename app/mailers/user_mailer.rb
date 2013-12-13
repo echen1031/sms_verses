@@ -1,15 +1,15 @@
 class UserMailer < ActionMailer::Base
   default from: "dispenser@comingtohim.com"
 
-  def start_subscription(user, user_subscription)
-    @user = user
+  def start_subscription(user_subscription)
+    @user = user_subscription.user
     @user_subscription = user_subscription
     @url = 'http://comingtohim.com/login'
     mail(to: @user_subscription.email, subject: 'Welcome to Coming to Him')    
   end
 
-  def end_subscription(user, user_subscription)
-    @user = user
+  def end_subscription(user_subscription)
+    @user = user_subscription.user
     @user_subscription = user_subscription
     @url = 'http://comingtohim.com/login'
     mail(to: @user_subscription.email, subject: 'Goodbye')    
