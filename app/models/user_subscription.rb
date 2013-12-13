@@ -35,7 +35,7 @@ class UserSubscription < ActiveRecord::Base
   end
 
   def send_welcome_email
-    UserMailer.start_subscription(current_user, @user_subscription).deliver
+    UserMailer.start_subscription(self.user, @user_subscription).deliver
   end
 
   def send_now
