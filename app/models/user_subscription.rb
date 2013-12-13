@@ -1,6 +1,7 @@
 class UserSubscription < ActiveRecord::Base
   require_dependency 'user_subscription/sendhub'
-  include UserSubscription::Sendhub
+  #include UserSubscription::SmsBySendhub
+  include UserSubscription::SmsByEmail
 
   EARLIEST_HOUR = 5
   LASTEST_HOUR = 23
@@ -9,6 +10,7 @@ class UserSubscription < ActiveRecord::Base
   attr_accessible :email, :phone, :remind_hour, :sms_id, :time_zone, 
                   :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
   phony_normalize :phone, :default_country_code => 'US'
+  
   validates_numericality_of :phone, :remind_hour
   validates :email, :email_format => {:message => 'does no look like an email address'}
   validates :phone, :phony_plausible => true
@@ -17,6 +19,8 @@ class UserSubscription < ActiveRecord::Base
 
   belongs_to :user
 
+  after_create :send_welcome_email
+  #after_save :update_sendhub_account
 
   def send_now
   	bible_verse = BibleVerse::random
@@ -34,11 +38,14 @@ class UserSubscription < ActiveRecord::Base
     end
   end
 
+  def send_welcome_email
+    UserMailer.start_subscription(current_user, @user_subscription).deliver
+  end
+
   def self.schedule_all
     logger.info 'schedule_all'
     UserSubscription.where("remind_hour IS NOT NULL").each do |us|
       bible_verse = BibleVerse::random
-      next if us.remind_hour.nil?
       
       scheduled_hour = (us.remind_hour == 99) ? (8..20).to_a.sample : us.remind_hour
       scheduled_at = DateTime.now.beginning_of_day.advance(:hours => scheduled_hour)

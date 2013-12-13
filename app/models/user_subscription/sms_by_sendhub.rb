@@ -2,8 +2,6 @@ require 'active_support/concern'
 module UserSubscription::Sendhub
   extend ActiveSupport::Concern
   included do
-    after_save :update_sendhub_account
-
     def update_sendhub_account
       UpdateSendhubWorker.perform_async(self.id)
     end
