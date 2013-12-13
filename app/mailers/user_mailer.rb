@@ -21,8 +21,8 @@ class UserMailer < ActionMailer::Base
     mail(to: @user_subscription.email, subject: 'Daily Verse')    
   end
 
-  def daily_sms(user_subscription, bible_verse)
-    mail(to: user_subscription.email_for_sms_message) do |format|
+  def daily_text_message(user_subscription, bible_verse)
+    mail(to: user_subscription.to_email_for_sms_message) do |format|
       format.text { render text: bible_verse.text_message }
     end
   end

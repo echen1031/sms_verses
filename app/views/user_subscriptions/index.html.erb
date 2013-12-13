@@ -9,6 +9,7 @@
     <th></th>
     <th>Email</th>
     <th>Phone</th>
+    <th>Carrier</th>
     <th>Remind hour</th>
     <th></th>    
   </tr>
@@ -17,6 +18,9 @@
       <td><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn' %></td>
       <td><%= user_subscription.email %></td>
       <td><%= user_subscription.phone %></td>
+      <td>
+        <%= Rails.configuration.phone_carriers[user_subscription.phone_carrier].name%>
+      </td>
       <td><%= user_subscription.remind_hour %></td>
       <td>
       <%= link_to 'Send Now', send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
