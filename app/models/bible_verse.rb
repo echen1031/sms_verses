@@ -16,7 +16,7 @@ class BibleVerse < ActiveRecord::Base
   
   attr_accessible :book, :chapter_num, :content, :verse_num, :book_num, :testament, :selected, :version
 
-  scope :selected, where(selected: true)
+  scope :selected, where(:selected => true)
   scope :ordered, order(' bible_verses.book_num asc, 
                           bible_verses.chapter_num asc, 
                           bible_verses.verse_num asc')
@@ -29,7 +29,7 @@ class BibleVerse < ActiveRecord::Base
   before_validation :set_book_num
 
   def self.random
-    BibleVerse.offset(rand(BibleVerse.count)).first
+    BibleVerse.selected.offset(rand(BibleVerse.selected.count)).first
   end
 
   def reference 
