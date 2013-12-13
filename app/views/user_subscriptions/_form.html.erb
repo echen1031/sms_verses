@@ -44,7 +44,11 @@
                       :include_blank => false, :selected => '99' %>
         </div>
     <div class="actions">
-      <%= f.submit 'Update', :class => 'btn btn-primary'%>
+      <% if @user_subscription.new_record? %> 
+        <%= f.submit 'Create', :class => 'btn btn-primary'%>
+      <% else %>
+        <%= f.submit 'Update', :class => 'btn btn-primary'%>
+      <% end %>
     </div>
       <% end %>
 
