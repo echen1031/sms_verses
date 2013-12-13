@@ -1,13 +1,12 @@
 class UserSubscription < ActiveRecord::Base
-  require_dependency 'user_subscription/sendhub'
+  #require_dependency 'user_subscription/sendhub'
   #include UserSubscription::SmsBySendhub
-  include UserSubscription::SmsByEmail
-
+  
   EARLIEST_HOUR = 5
   LASTEST_HOUR = 23
   RANDOM_HOUR = 99
 
-  attr_accessible :email, :phone, :remind_hour, :sms_id, :time_zone, 
+  attr_accessible :email, :phone, :remind_hour, :sms_id, :time_zone, :phone_carrier_id,
                   :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
   phony_normalize :phone, :default_country_code => 'US'
   
@@ -18,6 +17,7 @@ class UserSubscription < ActiveRecord::Base
   validate :has_either_email_or_phone, :has_at_least_one_day_selected
 
   belongs_to :user
+  belongs_to :phone_carrier
 
   after_create :send_welcome_email
   #after_save :update_sendhub_account
@@ -36,6 +36,10 @@ class UserSubscription < ActiveRecord::Base
     if not [send_day_1, send_day_2, send_day_3, send_day_4, send_day_5, send_day_6, send_day_7].any?{|d|d}
       errors.add(:send_day_1, "Please select at least one day")
     end
+  end
+
+  def email_for_sms_message
+    self.phone+'@'+self.phone_carrier.email_format
   end
 
   def send_welcome_email

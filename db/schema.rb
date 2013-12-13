@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131213064903) do
+ActiveRecord::Schema.define(:version => 20131213072731) do
 
   create_table "bible_verses", :force => true do |t|
     t.string   "book"
@@ -27,22 +27,30 @@ ActiveRecord::Schema.define(:version => 20131213064903) do
     t.integer  "char_count"
   end
 
+  create_table "phone_carriers", :force => true do |t|
+    t.string   "name"
+    t.string   "email_format"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "user_subscriptions", :force => true do |t|
     t.string   "email"
     t.string   "phone"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "user_id"
     t.string   "sms_id"
     t.integer  "remind_hour"
-    t.boolean  "send_day_1",  :default => false, :null => false
-    t.boolean  "send_day_2",  :default => false, :null => false
-    t.boolean  "send_day_3",  :default => false, :null => false
-    t.boolean  "send_day_4",  :default => false, :null => false
-    t.boolean  "send_day_5",  :default => false, :null => false
-    t.boolean  "send_day_6",  :default => false, :null => false
-    t.boolean  "send_day_7",  :default => false, :null => false
+    t.boolean  "send_day_1",       :default => false, :null => false
+    t.boolean  "send_day_2",       :default => false, :null => false
+    t.boolean  "send_day_3",       :default => false, :null => false
+    t.boolean  "send_day_4",       :default => false, :null => false
+    t.boolean  "send_day_5",       :default => false, :null => false
+    t.boolean  "send_day_6",       :default => false, :null => false
+    t.boolean  "send_day_7",       :default => false, :null => false
     t.string   "time_zone"
+    t.integer  "phone_carrier_id"
   end
 
   create_table "users", :force => true do |t|
