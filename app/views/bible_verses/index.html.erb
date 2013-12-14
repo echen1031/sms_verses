@@ -1,8 +1,24 @@
-<div class="page-header">
 <h1>Bible Verses</h1>
+<div class="row">
+  <%= search_form_for @q do |f| %>
+    <div class="span3">
+    <%= f.select :book_in, BibleVerse::BOOKS, include_blank: "Any" %>  
+    </div>
+    <div class="span2">
+      <%= f.text_field :chapter_num_eq, :placeholder => 'Chapter', :class => 'span2' %>  
+    </div>
+    <div class="span2">
+      <%= f.text_field :verse_num_eq, :placeholder => 'Verse', :class => 'span2' %>  
+    </div>
+    <div class="span2">
+      <%= f.text_field :content_cont, :placeholder => 'Words', :class => 'span2' %>  
+    </div>
+    <div class="span2">
+      <%= f.submit "Search", :class => "btn btn-primary" %>    
+    </div>
+  <% end %>
 </div>
 
-<%= paginate @bible_verses %>
 <table class="table table-bordered table-striped">
   <tr>
     <th><i class="fa fa-check"></i></th>
@@ -24,4 +40,3 @@
   </tr>
 <% end %>
 </table>
-<%= paginate @bible_verses %>

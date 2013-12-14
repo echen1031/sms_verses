@@ -1,10 +1,10 @@
 class BibleVersesController < ApplicationController
   def index
-    @bible_verses = BibleVerse.page(params[:page]).ordered
-
+    @q = BibleVerse.search(params[:q])
+    @bible_verses = @q.result.ordered.limit(200)
+    
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @bible_verses }
+      format.html      
     end
   end
 
@@ -15,5 +15,5 @@ class BibleVersesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @bible_verse }
     end
-  end  
+  end    
 end

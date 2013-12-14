@@ -3,6 +3,8 @@ require 'csv'
 class BibleVerse < ActiveRecord::Base
   paginates_per 50
 
+  VERSIONS = ['recovery', 'darby', 'kjv']
+  
   BOOKS = ['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 
     'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 
     'Ezra', 'Nehemiah', 'Judith', 'Esther', 'Job', 'Psalms', 'Proverbs', 'Ecclesiastes', 'Song of Songs', 
@@ -14,7 +16,8 @@ class BibleVerse < ActiveRecord::Base
     'Titus', 'Philemon', 'Hebrews', 'James',  '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 
     'Revelation']
   
-  attr_accessible :book, :chapter_num, :content, :verse_num, :book_num, :testament, :selected, :version, :char_num
+  attr_accessible :version, :testament, :book, :book_num, :chapter_num, :verse_num, 
+                :content, :selected, :char_num
 
   scope :selected, where(:selected => true)
   scope :ordered, order(' bible_verses.book_num asc, 
