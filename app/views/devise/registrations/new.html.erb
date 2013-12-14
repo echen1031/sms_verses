@@ -13,7 +13,7 @@
           :value_method => :name, :label_method => :name, 
           :include_blank => false, :selected => fetchFormatTZ() %>
         </div>
-      <div><%= f.submit "Sign up" %></div>
+      <div><%= f.submit "Sign up", class: 'btn btn-primary' %></div>
     <% end %>
 
     <%= render "devise/shared/links" %>
