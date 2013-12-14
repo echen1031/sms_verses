@@ -1,7 +1,7 @@
 class BibleVersesController < ApplicationController
   def index
     @q = BibleVerse.search(params[:q])
-    @bible_verses = @q.result.ordered.limit(200)
+    @bible_verses = @q.result.ordered.limit(176)
     
     respond_to do |format|
       format.html      
