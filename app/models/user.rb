@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, 
   								:time_zone, :latitude, :longitude
 
-  has_one :user_subscriptions
+  has_one :user_subscription
 
   after_validation :geocode
 end
