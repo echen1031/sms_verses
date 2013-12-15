@@ -1,11 +1,19 @@
 require 'sidekiq/web'
 
 SmsVerses::Application.routes.draw do
-  mount Sidekiq::Web, at: '/sidekiq'
+  
+  
 
+  
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  mount Sidekiq::Web, at: '/sidekiq'
+   
   root :to => 'home#index'
   resources :bible_verses, :only => [:index, :show]
 
+  #devise_for :admins
   devise_for :users
   devise_scope :user do
     get '/logout' => 'devise/sessions#destroy'
