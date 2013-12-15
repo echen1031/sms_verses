@@ -2,13 +2,16 @@
 <div class="row">
   <%= search_form_for @q do |f| %>
     <div class="span3">
-    <%= f.select :book_in, BibleVerse::BOOKS, include_blank: "Any" %>  
+    <%= f.select :testament_in, BibleVerse::TESTAMENTS, include_blank: "Both" %>
+    </div>  
+    <div class="span3">
+    <%= f.select :book_in, BibleVerse::BOOKS, include_blank: "All" %>
     </div>
-    <div class="span2">
-      <%= f.text_field :chapter_num_eq, :placeholder => 'Chapter', :class => 'span2' %>  
+    <div class="span1">
+      <%= f.text_field :chapter_num_eq, :placeholder => 'Ch', :class => 'span1' %>  
     </div>
-    <div class="span2">
-      <%= f.text_field :verse_num_eq, :placeholder => 'Verse', :class => 'span2' %>  
+    <div class="span1">
+      <%= f.text_field :verse_num_eq, :placeholder => 'Verse', :class => 'span1' %>  
     </div>
     <div class="span2">
       <%= f.text_field :content_cont, :placeholder => 'Words', :class => 'span2' %>  

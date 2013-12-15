@@ -3,32 +3,33 @@ require 'csv'
 class BibleVerse < ActiveRecord::Base
   paginates_per 50
 
-  VERSIONS = ['recovery', 'darby', 'kjv']
-  
+  TESTAMENTS = ['new', 'old']
+  VERSIONS = ['recovery', 'darby', 'kjv']  
   BOOKS = ['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 
-    'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 
-    'Ezra', 'Nehemiah', 'Judith', 'Esther', 'Job', 'Psalms', 'Proverbs', 'Ecclesiastes', 'Song of Songs', 
-    'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel', 
-    'Hosea', 'Joel', 'Amos', 'Obadiah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi',
-    'Matthew', 'Mark', 'Luke', 'John', 'Acts', 
-    'Romans', '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians', 
-    '1 Thessalonians', '2 Thessalonians', '1 Timothy', '2 Timothy', 
-    'Titus', 'Philemon', 'Hebrews', 'James',  '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 
-    'Revelation']
+          'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 
+          'Ezra', 'Nehemiah', 'Judith', 'Esther', 'Job', 'Psalms', 'Proverbs', 'Ecclesiastes', 'Song of Songs', 
+          'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel', 
+          'Hosea', 'Joel', 'Amos', 'Obadiah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi',
+          'Matthew', 'Mark', 'Luke', 'John', 'Acts', 
+          'Romans', '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians', 
+          '1 Thessalonians', '2 Thessalonians', '1 Timothy', '2 Timothy', 
+          'Titus', 'Philemon', 'Hebrews', 'James',  '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 
+          'Revelation']
   
   attr_accessible :version, :testament, :book, :book_num, :chapter_num, :verse_num, 
-                :content, :selected, :char_num
+                  :content, :selected, :char_num
 
   scope :selected, where(:selected => true)
   scope :ordered, order(' bible_verses.book_num asc, 
                           bible_verses.chapter_num asc, 
                           bible_verses.verse_num asc')
 
-  validates_presence_of :book, :chapter_num, :content, :verse_num, :book_num
+  validates_presence_of :content
   validates_numericality_of :chapter_num, :verse_num, :book_num
-  validates :testament, inclusion: { in: ['new', 'old']}
-  #validates_uniqueness_of :verse_num,  scope => [:book_num, :chapter_num]
-
+  validates :testament, inclusion: { in: TESTAMENTS }
+  validates :version, inclusion: { in: VERSIONS }
+  validates :book, inclusion: { in: BOOKS }
+  
   before_validation :set_book_num
 
   def self.random
