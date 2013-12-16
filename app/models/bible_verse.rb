@@ -5,19 +5,32 @@ class BibleVerse < ActiveRecord::Base
 
   TESTAMENTS = ['new', 'old']
   VERSIONS = ['recovery', 'darby', 'kjv']  
-  BOOKS = ['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 
-          'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 
-          'Ezra', 'Nehemiah', 'Judith', 'Esther', 'Job', 'Psalms', 'Proverbs', 'Ecclesiastes', 'Song of Songs', 
-          'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel', 
-          'Hosea', 'Joel', 'Amos', 'Obadiah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi',
-          'Matthew', 'Mark', 'Luke', 'John', 'Acts', 
-          'Romans', '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians', 
-          '1 Thessalonians', '2 Thessalonians', '1 Timothy', '2 Timothy', 
-          'Titus', 'Philemon', 'Hebrews', 'James',  '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 
-          'Revelation']
+  EN_BOOKS = ['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy', 
+              'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 
+              'Ezra', 'Nehemiah', 'Judith', 'Esther', 'Job', 'Psalms', 'Proverbs', 'Ecclesiastes', 'Song of Songs', 
+              'Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel', 
+              'Hosea', 'Joel', 'Amos', 'Obadiah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi',
+              'Matthew', 'Mark', 'Luke', 'John', 'Acts', 
+              'Romans', '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians', 
+              '1 Thessalonians', '2 Thessalonians', '1 Timothy', '2 Timothy', 
+              'Titus', 'Philemon', 'Hebrews', 'James',  '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude', 
+              'Revelation']
+  CH_BOOKS = ["創世記", "出埃及記", "利未記", "民數記", "申命記", "約書亞記", "士師記", "路得記",
+              "撒母耳記上", "撒母耳記下", "列王紀上", "列王紀下", "歷代志上", "歷代志下",
+              "以斯拉記", "尼希米記", "以斯帖記", "約伯記", 
+              "詩篇", "箴言", "傳道書", "雅歌", "以賽亞書", "耶利米書", "耶利米哀歌",
+              "以西結書", "但以理書", "何西阿書", "約珥書", "阿摩司書", "俄巴底亞書", "約拿書", "彌迦書", 
+              "那鴻書", "哈巴谷書", "西番雅書", "哈該書", "撒迦利亞書", "瑪拉基書",
+              "馬太福音", "馬可福音", "路加福音", "約翰福音", "使徒行傳", "羅馬書", "哥林多前書", "哥林多後書", 
+              "加拉太書", "以弗所書", "腓立比書", "歌羅西書",
+              "帖撒羅尼迦前書", "帖撒羅尼迦後書", "提摩太前書", "提摩太後書", "提多書", "腓利門書", 
+              "希伯來書", "雅各書", "彼得前書", "彼得後書", "約翰壹書", "約翰貳書", "約翰參書",
+              "猶大書", "啟示錄"]
+
+  LANGUAGES = ['en', 'ch']
   
   attr_accessible :version, :testament, :book, :book_num, :chapter_num, :verse_num, 
-                  :content, :selected, :char_num
+                  :content, :selected, :char_num, :language
 
   scope :selected, where(:selected => true)
   scope :ordered, order(' bible_verses.book_num asc, 
@@ -28,7 +41,8 @@ class BibleVerse < ActiveRecord::Base
   validates_numericality_of :chapter_num, :verse_num, :book_num
   validates :testament, inclusion: { in: TESTAMENTS }
   validates :version, inclusion: { in: VERSIONS }
-  validates :book, inclusion: { in: BOOKS }
+  validates :book, inclusion: { in: EN_BOOKS + CH_BOOKS }
+  validates :language, inclusion: { in: LANGUAGES }
   
   before_validation :set_book_num
 
@@ -51,7 +65,8 @@ class BibleVerse < ActiveRecord::Base
 
   def set_book_num
     self.chapter_num = 1 if chapter_num.nil?
-    self.book_num = book_to_index[book]    
+    self.book_num = book_to_index[self.book] if self.num.nil? and self.book.present?
+    self.book = BOOKS[self.book_num-1] if self.book.nil? and self.book_num.present?
   end
   
   def self.write_selected_to_file

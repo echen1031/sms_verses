@@ -5,7 +5,7 @@
     <%= f.select :testament_in, BibleVerse::TESTAMENTS, include_blank: "Both" %>
     </div>  
     <div class="span3">
-    <%= f.select :book_in, BibleVerse::BOOKS, include_blank: "All" %>
+    <%= f.select :book_in, BibleVerse::EN_BOOKS, include_blank: "All" %>
     </div>
     <div class="span1">
       <%= f.text_field :chapter_num_eq, :placeholder => 'Ch', :class => 'span1' %>  
