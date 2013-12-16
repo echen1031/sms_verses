@@ -60,13 +60,13 @@ class BibleVerse < ActiveRecord::Base
 
   def book_to_index
     return @book_to_index unless @book_to_index.nil? or @book_to_index.empty?
-    @book_to_index = Hash[BOOKS.zip(BOOKS.each_index.map(&1.method(:+)))]    
+    @book_to_index = Hash[EN_BOOKS.zip(EN_BOOKS.each_index.map(&1.method(:+)))]    
   end
 
   def set_book_num
     self.chapter_num = 1 if chapter_num.nil?
     self.book_num = book_to_index[self.book] if self.num.nil? and self.book.present?
-    self.book = BOOKS[self.book_num-1] if self.book.nil? and self.book_num.present?
+    self.book = EN_BOOKS[self.book_num-1] if self.book.nil? and self.book_num.present?
   end
   
   def self.write_selected_to_file
