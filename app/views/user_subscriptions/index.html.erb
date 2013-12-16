@@ -11,22 +11,53 @@
   <%= link_to 'New Subscription', new_user_user_subscription_path(current_user.id), class: "btn btn-primary" %>
 <% end %>
 <hr>
-<table class="table table-bordered table-striped">
-  <tr>
-    <th></th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Send Time</th>
-    <th></th>    
-  </tr>
+<table border ="1" class="table table-bordered table-striped">
   <% @user_subscriptions.each do |user_subscription| %> 
+    <thead>
+      <tr>
+        <th rowspan="2">Days to send</th>
+          <th>
+          <% if user_subscription.send_day_1 == true %>
+            <%= "Sun" %> /
+          <% end %>
+          <% if user_subscription.send_day_2 == true %>
+            <%= "Mon" %> /
+          <% end %>
+          <% if user_subscription.send_day_3 == true %>
+            <%= "Tues" %> /
+          <% end %>
+          <% if user_subscription.send_day_4 == true %>
+            <%= "Wed" %> /
+          <% end %>
+          <% if user_subscription.send_day_5 == true %>
+            <%= "Thurs" %> /
+          <% end %>
+          <% if user_subscription.send_day_6 == true %>
+            <%= "Fri" %> /
+          <% end %>
+          <% if user_subscription.send_day_7 == true %>
+            <%= "Sat" %> /
+          <% end %>
+        </th>
+      </tr>
+    </thead>
+  
+  <tr>
+    <th>Time</th>
+      <td><%= user_subscription.remind_hour%></td>
+  </tr>
+   <tr>
+    <th>Email</th>
+      <td><%= user_subscription.email %></td>
+  </tr>
+  <tr>
+    <th>Phone</th>
+      <td><%= user_subscription.phone %></td>
+  </tr>
     <tr>
       <td><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-success' %></td>
-      <td><%= user_subscription.email %></td>
-      <td><%= user_subscription.phone %></td>
-      <td><%= user_subscription.remind_hour %></td>
       <td>
-        <%= link_to '<i class="icon-circle-arrow-up"></i> Send Test'.html_safe, send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
+        <%= link_to '<i class="icon-circle-arrow-up"></i> Send a Test'.html_safe, send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
       <%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
       </td>
     </tr>
