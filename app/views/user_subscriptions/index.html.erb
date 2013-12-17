@@ -25,40 +25,18 @@
 
     <tr>
       <th>Time</th>
-      <td><%= user_subscription.remind_hour%></td>
+      <td><%= user_subscription.readable_time %></td>
     </tr>
 
     <tr>
-      <th>Days to send</th>
-        <th>
-          <% if user_subscription.send_day_1 == true %>
-            <%= "Sun" %> /
-          <% end %>
-          <% if user_subscription.send_day_2 == true %>
-            <%= "Mon" %> /
-          <% end %>
-          <% if user_subscription.send_day_3 == true %>
-            <%= "Tues" %> /
-          <% end %>
-          <% if user_subscription.send_day_4 == true %>
-            <%= "Wed" %> /
-          <% end %>
-          <% if user_subscription.send_day_5 == true %>
-            <%= "Thurs" %> /
-          <% end %>
-          <% if user_subscription.send_day_6 == true %>
-            <%= "Fri" %> /
-          <% end %>
-          <% if user_subscription.send_day_7 == true %>
-            <%= "Sat" %> /
-          <% end %>
-        </th>
+      <th>Days</th>
+      <th><%= user_subscription.subscription_days %></th>
     </tr>
 </table>
 
        <td><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-success' %>
       
-        <%= link_to '<i class="icon-circle-arrow-up"></i> Send a Test'.html_safe, send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
+        <%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
       <%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
       </td>
     </tr>
