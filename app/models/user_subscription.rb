@@ -10,12 +10,48 @@ class UserSubscription < ActiveRecord::Base
                   :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
   phony_normalize :phone, :default_country_code => 'US'
   validates_numericality_of :phone, :remind_hour
-  validates :email, :email_format => {:message => 'does no look like an email address'}
+  validates :email, :email_format => {:message => 'does not look valid'}
   validates :phone, :phony_plausible => true
   validates :remind_hour, inclusion: { in: (5..23).to_a+[RANDOM_HOUR]}
   validate :has_either_email_or_phone, :has_at_least_one_day_selected
 
   belongs_to :user
+
+
+  def readable_time
+    if remind_hour == 99
+      "Random"
+    else
+      Time.parse("#{remind_hour}:00").strftime("%l %P")
+    end
+  end
+
+  def subscription_days
+    resultstring = ""
+
+    if send_day_1 == true 
+          resultstring = resultstring + "Sun /" 
+    end 
+    if send_day_2 == true 
+          resultstring = resultstring + "Mon /" 
+    end 
+    if send_day_3 == true 
+          resultstring = resultstring + "Tues /" 
+    end 
+    if send_day_4 == true 
+          resultstring = resultstring + "Wed /" 
+    end 
+    if send_day_5 == true 
+          resultstring = resultstring + "Thurs /" 
+    end 
+    if send_day_6 == true 
+          resultstring = resultstring + "Fri /" 
+    end 
+    if send_day_7 == true 
+          resultstring = resultstring + "Sat /" 
+    end 
+              resultstring
+  end
 
 
   def send_now
