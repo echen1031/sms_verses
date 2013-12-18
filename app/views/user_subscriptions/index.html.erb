@@ -11,33 +11,29 @@
   <%= link_to 'New Subscription', new_user_user_subscription_path(current_user.id), class: "btn btn-primary" %>
 <% end %>
 <hr>
-<table border ="1" class="table table-bordered table-striped">
-  <% @user_subscriptions.each do |user_subscription| %> 
-    <tr>
-      <th>Email</th>
-      <td><%= user_subscription.email %></td>
-    </tr>
 
+<table class="table table-bordered table-striped">
+  <tr>
+    <th></th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Carrier</th>
+    <th>Remind hour</th>
+    <th></th>    
+  </tr>
+  <% @user_subscriptions.each do |us| %> 
     <tr>
-      <th>Phone</th>
-      <td><%= user_subscription.phone %></td>
-    </tr>
-
-    <tr>
-      <th>Time</th>
-      <td><%= user_subscription.readable_time %></td>
-    </tr>
-
-    <tr>
-      <th>Days</th>
-      <td><%= user_subscription.subscription_days %></td>
-    </tr>
-</table>
-
-       <td><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-success' %>
-      
-        <%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_user_subscription_path(current_user.id,  user_subscription.id), :class => 'btn btn-primary' %>
-      <%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+      <td><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, us.id), :class => 'btn' %></td>
+      <td><%= us.email %></td>
+      <td><%= us.phone %></td>
+      <td>
+        <%= Rails.configuration.phone_carriers[us.phone_carrier].name%>
+      </td>
+      <td><%= us.remind_hour %></td>
+      <td>
+      <%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_user_subscription_path(current_user.id,  us.id), :class => 'btn btn-primary' %>
+      <%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, us.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>      
       </td>
     </tr>
   <% end %>    
+</table>

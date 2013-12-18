@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Version:</b>
+  <%= @bible_verse.version %>
+</p>
+
+<p>
+  <b>Tesatment:</b>
+  <%= @bible_verse.testament %>
+</p>
+
+<p>
   <b>Reference:</b>
   <%= @bible_verse.reference %>
 </p>
@@ -30,6 +40,9 @@
   <%= @bible_verse.content %>
 </p>
 
+<p>
+  <b>Selected:</b>
+  <%= @bible_verse.selected %>
+</p>
 
-<%= link_to 'Edit', edit_bible_verse_path(@bible_verse) %> |
-<%= link_to 'Back', bible_verses_path %>
+<%= link_to 'Back', bible_verses_path, :class => 'btn' %>

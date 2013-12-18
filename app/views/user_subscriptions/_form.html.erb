@@ -12,7 +12,7 @@
     <div class="form">
       <%= f.input :email %>
       <%= f.input :phone %>
-      <%= f.hidden_field :sms_id, value: @user_subscription.sms_id %>
+      <%= f.input :phone_carrier, collection: UserSubscription.select_phone_carrier %>      
     </div>
     <br>
 
@@ -38,7 +38,6 @@
         <td><%= f.check_box :send_day_7 %></td>
       </tr>
     </table>
-
         <div class="form">
           <%= f.input :remind_hour, collection: UserSubscription::select_hours,
                       :include_blank => false %>

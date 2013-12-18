@@ -13,7 +13,8 @@ gem 'timezone'
 gem 'simple_form'
 gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_email_format_of.git'
 gem 'phony_rails'
-
+gem 'font-awesome-sass'
+gem 'rails_admin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -29,6 +30,7 @@ end
 
 gem 'jquery-rails'
 
+gem 'nokogiri'
 gem 'kaminari'
 gem 'ruby-sendhub'
 gem 'choices'
@@ -39,6 +41,7 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 gem 'slim'
 gem 'sidekiq'
 gem 'whenever', :require => false
+gem "ransack"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
