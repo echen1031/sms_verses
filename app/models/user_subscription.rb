@@ -27,30 +27,30 @@ class UserSubscription < ActiveRecord::Base
   end
 
   def subscription_days
-    resultstring = ""
+    resultarray = []
 
     if send_day_1 == true 
-          resultstring = resultstring + "Sun /" 
+          resultarray << "Sun"
     end 
     if send_day_2 == true 
-          resultstring = resultstring + "Mon /" 
+          resultarray << "Mon" 
     end 
     if send_day_3 == true 
-          resultstring = resultstring + "Tues /" 
+          resultarray << "Tues"
     end 
     if send_day_4 == true 
-          resultstring = resultstring + "Wed /" 
+          resultarray << "Wed"
     end 
     if send_day_5 == true 
-          resultstring = resultstring + "Thurs /" 
+          resultarray << "Thurs"
     end 
     if send_day_6 == true 
-          resultstring = resultstring + "Fri /" 
+          resultarray << "Fri"
     end 
     if send_day_7 == true 
-          resultstring = resultstring + "Sat /" 
+          resultarray << "Sat"
     end 
-              resultstring
+       resultarray.join " / "
   end
 
 
