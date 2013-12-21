@@ -3,11 +3,12 @@ class UserSubscription < ActiveRecord::Base
   LASTEST_HOUR = 23
   RANDOM_HOUR = 99
 
-  attr_accessible :email, :phone, :remind_hour, :sms_id, :time_zone, :phone_carrier,
+  attr_accessible :email, :phone, :remind_hour, :time_zone, :phone_carrier,
                   :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
   phony_normalize :phone, :default_country_code => 'US'
   
   validates_numericality_of :phone, :remind_hour
+  #todo move this into has_either_email_or_phone
   validates :email, :email_format => {:message => 'does not look valid'}
   validates :phone, :phony_plausible => true
   validates_inclusion_of :phone_carrier, :in => Rails.configuration.phone_carriers.keys
@@ -85,7 +86,7 @@ class UserSubscription < ActiveRecord::Base
   def send_now
     bible_verse = BibleVerse::random
     EmailVerseWorker.perform_async(self.id, bible_verse.id) if self.email 
-    TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone and self.sms_id
+    TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone
   end
 
   def self.schedule_all
@@ -99,7 +100,7 @@ class UserSubscription < ActiveRecord::Base
       next if scheduled_at < DateTime.now
       logger.info("subscription #{us.id} is scheduled at #{scheduled_at}")
       EmailVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.email
-      TextVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.phone and us.sms_id            
+      TextVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.phone
     end
   end
 
