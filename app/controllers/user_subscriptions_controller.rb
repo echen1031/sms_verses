@@ -44,7 +44,7 @@ class UserSubscriptionsController < ApplicationController
     @user_subscription.user_id = current_user.id
     respond_to do |format|
       if @user_subscription.save
-        format.html { redirect_to user_user_subscription_url(current_user, @user_subscription), notice: 'User subscription was successfully created.' }
+        format.html { redirect_to user_user_subscriptions_path(current_user.id), notice: 'User subscription was successfully created.' }
         format.json { render json: @user_subscription, status: :created, location: @user_subscription }
       else
         format.html { render action: "new" }
@@ -58,7 +58,7 @@ class UserSubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if current_user_subscription.update_attributes(params[:user_subscription])
-        format.html { redirect_to user_user_subscription_path(current_user, current_user_subscription), notice: 'User subscription was successfully updated.' }
+        format.html { redirect_to user_user_subscriptions_path(current_user.id), notice: 'User subscription was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

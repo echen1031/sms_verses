@@ -110,6 +110,6 @@ class UserSubscription < ActiveRecord::Base
   end
 
   def self.select_hours
-    [['Random', RANDOM_HOUR]] + (EARLIEST_HOUR..LASTEST_HOUR).to_a.map {|h| [Time.parse("#{h}:00").strftime("%l %P"), h ] }
+    [['Random (8 am ~ 10 pm)', RANDOM_HOUR]] + (EARLIEST_HOUR..LASTEST_HOUR).to_a.map {|h| [Time.parse("#{h}:00").strftime("%l %P"), h ] }
   end
 end
