@@ -15,35 +15,23 @@
       <% @user_subscriptions.each do |user_subscription| %>
           
           <tr>
+            <th></th>
             <th>Email</th>
-            <td><%= user_subscription.email %></td>
-          </tr>
-
-          <tr>
             <th>Phone</th>
-            <td><%= user_subscription.phone %></td>
-          </tr>
-
-          <tr>
             <th>Carrier</th>
-            <td><%= Rails.configuration.phone_carriers[user_subscription.phone_carrier].name %></td>
-          </tr>
-
-          <tr>
             <th>Time</th>
-            <td><%= user_subscription.readable_time  %></td>
-          </tr>
-
-          <tr>
             <th>Days</th>
-            <td><%= user_subscription.subscription_days %></td>
           </tr>
-
-    </table>
 
     <td> <%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-success' %>
-      <%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-primary' %>
-      <%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>      
+            <td><%= user_subscription.email %></td>
+            <td><%= user_subscription.phone %></td>
+            <td><%= Rails.configuration.phone_carriers[user_subscription.phone_carrier].name %></td>
+            <td><%= user_subscription.readable_time  %></td>
+            <td><%= user_subscription.subscription_days %></td>
+            <td><%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-primary' %></td>
+            <td><%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>      
     </td>
-    </hr>
+  </tr>
+    </table>
   <% end %>    
