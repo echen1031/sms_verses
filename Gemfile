@@ -58,9 +58,19 @@ gem "ransack"
 # To use debugger
 # gem 'debugger'
 
-group :development do 
-	gem 'pry-rails'
-  	gem 'pry-nav'
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'pry-rails'
+  gem 'pry-nav'
+end
+
+group :test do
+  gem 'faker'
+  gem 'forgery'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'simplecov', :require => false
+  gem 'timecop'  
 end
 
 gem 'rails_12factor', group: :production

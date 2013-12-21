@@ -33,7 +33,7 @@ class BibleCrawler::RecoveryChCrawler
               )
           bible_verse.update_attributes(:testament => testament, 
                                         :content => content, 
-                                        :char_num => content.length )          
+                                        :char_count => content.length )          
         end        
       end            
     end

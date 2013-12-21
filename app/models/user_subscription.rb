@@ -78,8 +78,8 @@ class UserSubscription < ActiveRecord::Base
 
   def send_now
     bible_verse = BibleVerse::random
-    EmailVerseWorker.perform_async(self.id, bible_verse.id) if self.email 
-    TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone
+    EmailVerseWorker.perform_async(self.id, bible_verse.id) if self.email.present? 
+    TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone.present?
   end
 
   def self.schedule_all

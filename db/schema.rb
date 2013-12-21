@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131221201252) do
+ActiveRecord::Schema.define(:version => 20131221203840) do
 
   create_table "bible_verses", :force => true do |t|
     t.string   "book"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20131221201252) do
     t.boolean  "send_day_5",    :default => false, :null => false
     t.boolean  "send_day_6",    :default => false, :null => false
     t.boolean  "send_day_7",    :default => false, :null => false
-    t.string   "time_zone"
     t.string   "phone_carrier"
   end
 
