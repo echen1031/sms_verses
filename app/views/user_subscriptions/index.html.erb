@@ -1,33 +1,25 @@
 <div class="page-header"></div>
-  <% if current_user and current_user.user_subscription.nil? %>
-    <h1><%='Start Receiving Verses!'%></h1>
-    <br></br>
-    <h3>Click <%= link_to 'here', new_user_user_subscription_path(current_user.id) %><h3>
-  <% else %>
-    <h1><%='My Subscription'%></h1>
-  <% end %>
-  <br></br>
-    <table border = "1" class="table table-bordered table-striped">
-      <% @user_subscriptions.each do |user_subscription| %>
-          
-          <tr>
-            <th></th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Carrier</th>
-            <th>Time</th>
-            <th>Days</th>
-          </tr>
-
+<h1><%='My Subscription'%></h1>
+<table border = "1" class="table table-bordered table-striped">
+  <tr>
+    <th></th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Carrier</th>
+    <th>Time</th>
+    <th>Days</th>
+  </tr>
+  <% @user_subscriptions.each do |user_subscription| %>
+  <tr>
     <td> <%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-success' %>
-            <td><%= user_subscription.email %></td>
-            <td><%= user_subscription.phone %></td>
-            <td><%= Rails.configuration.phone_carriers[user_subscription.phone_carrier].name %></td>
-            <td><%= user_subscription.readable_time  %></td>
-            <td><%= user_subscription.subscription_days %></td>
-            <td><%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-primary' %></td>
-            <td><%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>      
+    <td><%= user_subscription.email %></td>
+    <td><%= user_subscription.phone %></td>
+    <td><%= Rails.configuration.phone_carriers[user_subscription.phone_carrier].name %></td>
+    <td><%= user_subscription.readable_time  %></td>
+    <td><%= user_subscription.subscription_days %></td>
+    <td><%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-primary' %></td>
+    <td><%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>      
     </td>
   </tr>
-    </table>
-  <% end %>    
+  <% end %>
+</table>

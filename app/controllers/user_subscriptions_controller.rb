@@ -7,8 +7,10 @@ class UserSubscriptionsController < ApplicationController
   def index
     @user_subscriptions = UserSubscription.where(:user_id => current_user.id)
 
+
     respond_to do |format|
-      format.html # index.html.erb
+
+      format.html {redirect_to new_user_user_subscription_path(current_user.id) if @user_subscriptions.empty?}
       format.json { render json: @user_subscriptions }
     end
   end
