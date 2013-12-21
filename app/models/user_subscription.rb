@@ -3,12 +3,13 @@ class UserSubscription < ActiveRecord::Base
   LASTEST_HOUR = 23
   RANDOM_HOUR = 99
 
-  attr_accessible :email, :phone, :remind_hour, :sms_id, :time_zone, :phone_carrier,
+  attr_accessible :email, :phone, :remind_hour, :phone_carrier,
                   :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
   phony_normalize :phone, :default_country_code => 'US'
   
   validates_numericality_of :phone, :remind_hour
-  validates :email, :email_format => {:message => 'does no look like an email address'}
+  #todo move this into has_either_email_or_phone
+  validates :email, :email_format => {:message => 'does not look valid'}
   validates :phone, :phony_plausible => true
   validates_inclusion_of :phone_carrier, :in => Rails.configuration.phone_carriers.keys
   validates_inclusion_of :remind_hour, :in => (5..23).to_a+[RANDOM_HOUR]
@@ -17,7 +18,44 @@ class UserSubscription < ActiveRecord::Base
   belongs_to :user
   
   after_create :send_welcome_email
-  
+
+  #todo: move this to user_subscription helper
+  def readable_time
+    if remind_hour == 99
+      "Random"
+    else
+      Time.parse("#{remind_hour}:00").strftime("%l %P")
+    end
+  end
+
+  #todo: use switch or hash
+  def subscription_days
+    resultarray = []
+
+    if send_day_1 == true 
+          resultarray << "Sn"
+    end 
+    if send_day_2 == true 
+          resultarray << "M" 
+    end 
+    if send_day_3 == true 
+          resultarray << "T"
+    end 
+    if send_day_4 == true 
+          resultarray << "W"
+    end 
+    if send_day_5 == true 
+          resultarray << "Th"
+    end 
+    if send_day_6 == true 
+          resultarray << "F"
+    end 
+    if send_day_7 == true 
+          resultarray << "S"
+    end 
+       resultarray.join " / "
+  end
+
   #validations
   def has_either_email_or_phone
     errors.add(:email, "Please enter either email or phone") if email.nil? and phone.nil?
@@ -40,8 +78,8 @@ class UserSubscription < ActiveRecord::Base
 
   def send_now
     bible_verse = BibleVerse::random
-    EmailVerseWorker.perform_async(self.id, bible_verse.id) if self.email 
-    TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone and self.sms_id
+    EmailVerseWorker.perform_async(self.id, bible_verse.id) if self.email.present? 
+    TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone.present?
   end
 
   def self.schedule_all
@@ -55,7 +93,7 @@ class UserSubscription < ActiveRecord::Base
       next if scheduled_at < DateTime.now
       logger.info("subscription #{us.id} is scheduled at #{scheduled_at}")
       EmailVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.email
-      TextVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.phone and us.sms_id            
+      TextVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.phone
     end
   end
 
@@ -64,6 +102,6 @@ class UserSubscription < ActiveRecord::Base
   end
 
   def self.select_hours
-    [['Random', RANDOM_HOUR]] + (EARLIEST_HOUR..LASTEST_HOUR).to_a.map {|h| [Time.parse("#{h}:00").strftime("%l %P"), h ] }
+    [['Random (8 am ~ 10 pm)', RANDOM_HOUR]] + (EARLIEST_HOUR..LASTEST_HOUR).to_a.map {|h| [Time.parse("#{h}:00").strftime("%l %P"), h ] }
   end
 end

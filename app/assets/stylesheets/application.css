@@ -13,3 +13,6 @@
  *= require bootstrap
  *= require_tree . 
  */
+.simple_form label {
+    font-weight: bolder;
+        }

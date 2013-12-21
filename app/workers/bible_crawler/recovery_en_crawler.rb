@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 
-class BibleCrawler
+class BibleCrawler::RecoveryEnCrawler
   include Sidekiq::Worker
   URL = 'http://online.recoveryversion.org'
 

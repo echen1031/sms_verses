@@ -30,7 +30,7 @@ class BibleVerse < ActiveRecord::Base
   LANGUAGES = ['en', 'ch']
   
   attr_accessible :version, :testament, :book, :book_num, :chapter_num, :verse_num, 
-                  :content, :selected, :char_num, :language
+                  :content, :selected, :char_count, :language
 
   scope :selected, where(:selected => true)
   scope :ordered, order(' bible_verses.book_num asc, 
@@ -65,7 +65,7 @@ class BibleVerse < ActiveRecord::Base
 
   def set_book_num
     self.chapter_num = 1 if chapter_num.nil?
-    self.book_num = book_to_index[self.book] if self.num.nil? and self.book.present?
+    self.book_num = book_to_index[self.book] if self.book_num.nil? and self.book.present?
     self.book = EN_BOOKS[self.book_num-1] if self.book.nil? and self.book_num.present?
   end
   

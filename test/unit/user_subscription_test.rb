@@ -1,7 +1,4 @@
 require 'test_helper'
 
-class UserSubscriptionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class UserSubscriptionTest < ActiveSupport::TestCase 
 end

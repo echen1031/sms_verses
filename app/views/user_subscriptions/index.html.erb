@@ -1,31 +1,25 @@
-<div class="page-header">
-<h1>My Subscription</h1>
-</div>
-
-<%= link_to 'Add New Subscription', new_user_user_subscription_path(current_user.id), class: "btn btn-primary" %>
-<hr>
-<table class="table table-bordered table-striped">
+<div class="page-header"></div>
+<h1><%='My Subscription'%></h1>
+<table border = "1" class="table table-bordered table-striped">
   <tr>
     <th></th>
     <th>Email</th>
     <th>Phone</th>
     <th>Carrier</th>
-    <th>Remind hour</th>
-    <th></th>    
+    <th>Time</th>
+    <th>Days</th>
   </tr>
-  <% @user_subscriptions.each do |us| %> 
-    <tr>
-      <td><%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, us.id), :class => 'btn' %></td>
-      <td><%= us.email %></td>
-      <td><%= us.phone %></td>
-      <td>
-        <%= Rails.configuration.phone_carriers[us.phone_carrier].name%>
-      </td>
-      <td><%= us.remind_hour %></td>
-      <td>
-      <%= link_to 'Send Now', send_now_user_user_subscription_path(current_user.id,  us.id), :class => 'btn btn-primary' %>
-      <%= link_to 'Unsubscribe', user_user_subscription_path(current_user.id, us.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
-      </td>
-    </tr>
-  <% end %>    
+  <% @user_subscriptions.each do |user_subscription| %>
+  <tr>
+    <td> <%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-success' %>
+    <td><%= user_subscription.email %></td>
+    <td><%= user_subscription.phone %></td>
+    <td><%= Rails.configuration.phone_carriers[user_subscription.phone_carrier].name %></td>
+    <td><%= user_subscription.readable_time  %></td>
+    <td><%= user_subscription.subscription_days %></td>
+    <td><%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_user_subscription_path(current_user.id, user_subscription.id), :class => 'btn btn-primary' %></td>
+    <td><%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_subscription_path(current_user.id, user_subscription.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>      
+    </td>
+  </tr>
+  <% end %>
 </table>

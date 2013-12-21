@@ -12,8 +12,18 @@
 </p>
 
 <p>
-  <b>Remind at:</b>
-  <%= @user_subscription.remind_hour %>
+  <b>Carrier</b>
+  <%= Rails.configuration.phone_carriers[@user_subscription.phone_carrier].name %>
+</p>
+
+<p>
+  <b>Time</b>
+  <%= @user_subscription.readable_time %>
+</p>
+
+<p>
+  <b>Days</b>
+  <%= @user_subscription.subscription_days %>
 </p>
 
 
