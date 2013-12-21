@@ -32,7 +32,7 @@ class UserSubscription < ActiveRecord::Base
     resultarray = []
 
     if send_day_1 == true 
-          resultarray << "Sun"
+          resultarray << "Sn"
     end 
     if send_day_2 == true 
           resultarray << "M" 
@@ -50,7 +50,7 @@ class UserSubscription < ActiveRecord::Base
           resultarray << "F"
     end 
     if send_day_7 == true 
-          resultarray << "Sat"
+          resultarray << "S"
     end 
        resultarray.join " / "
   end
