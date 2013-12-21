@@ -59,11 +59,9 @@ class UserSubscription < ActiveRecord::Base
   def send_now
   	bible_verse = BibleVerse::random
   	EmailVerseWorker.perform_async(self.id, bible_verse.id) if self.email 
-  	TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone and self.sms_id
+  	TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone
   end  
 
-  
-  
   #validations
   def has_either_email_or_phone
     errors.add(:email, "Please enter either email or phone") if email.nil? and phone.nil?
