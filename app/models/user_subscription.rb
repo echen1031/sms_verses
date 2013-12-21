@@ -35,19 +35,19 @@ class UserSubscription < ActiveRecord::Base
           resultarray << "Sun"
     end 
     if send_day_2 == true 
-          resultarray << "Mon" 
+          resultarray << "M" 
     end 
     if send_day_3 == true 
-          resultarray << "Tues"
+          resultarray << "T"
     end 
     if send_day_4 == true 
-          resultarray << "Wed"
+          resultarray << "W"
     end 
     if send_day_5 == true 
-          resultarray << "Thurs"
+          resultarray << "Th"
     end 
     if send_day_6 == true 
-          resultarray << "Fri"
+          resultarray << "F"
     end 
     if send_day_7 == true 
           resultarray << "Sat"
