@@ -3,7 +3,7 @@ class UserSubscription < ActiveRecord::Base
   LASTEST_HOUR = 23
   RANDOM_HOUR = 99
 
-  attr_accessible :email, :phone, :remind_hour, :time_zone, :phone_carrier,
+  attr_accessible :email, :phone, :remind_hour, :phone_carrier,
                   :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
   phony_normalize :phone, :default_country_code => 'US'
   
@@ -55,13 +55,6 @@ class UserSubscription < ActiveRecord::Base
     end 
        resultarray.join " / "
   end
-
-
-  def send_now
-  	bible_verse = BibleVerse::random
-  	EmailVerseWorker.perform_async(self.id, bible_verse.id) if self.email 
-  	TextVerseWorker.perform_async(self.id, bible_verse.id) if self.phone
-  end  
 
   #validations
   def has_either_email_or_phone
