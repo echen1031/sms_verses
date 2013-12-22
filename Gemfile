@@ -59,7 +59,7 @@ gem "ransack"
 # gem 'debugger'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'pry-rails'
   gem 'pry-nav'
 end

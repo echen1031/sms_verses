@@ -60,7 +60,8 @@ class UserSubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if current_user_subscription.update_attributes(params[:user_subscription])
-        format.html { redirect_to user_user_subscriptions_path(current_user.id), notice: 'User subscription was successfully updated.' }
+        format.html { redirect_to user_user_subscriptions_path(current_user.id), 
+          notice: 'User subscription was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

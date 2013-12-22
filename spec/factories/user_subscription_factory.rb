@@ -1,4 +1,3 @@
-# This will guess the User class
 FactoryGirl.define do
   factory :user_subscription do
     sequence(:email)    { |n| "#{Forgery(:internet).user_name}#{n}@#{Forgery(:internet).domain_name}" }
