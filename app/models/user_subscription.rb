@@ -18,44 +18,7 @@ class UserSubscription < ActiveRecord::Base
   belongs_to :user
   
   after_create :send_welcome_email
-
-  #todo: move this to user_subscription helper
-  def readable_time
-    if remind_hour == 99
-      "Random"
-    else
-      Time.parse("#{remind_hour}:00").strftime("%l %P")
-    end
-  end
-
-  #todo: use switch or hash
-  def subscription_days
-    resultarray = []
-
-    if send_day_1 == true 
-          resultarray << "Sn"
-    end 
-    if send_day_2 == true 
-          resultarray << "M" 
-    end 
-    if send_day_3 == true 
-          resultarray << "T"
-    end 
-    if send_day_4 == true 
-          resultarray << "W"
-    end 
-    if send_day_5 == true 
-          resultarray << "Th"
-    end 
-    if send_day_6 == true 
-          resultarray << "F"
-    end 
-    if send_day_7 == true 
-          resultarray << "S"
-    end 
-       resultarray.join " / "
-  end
-
+  
   #validations
   def has_either_email_or_phone
     errors.add(:email, "Please enter either email or phone") if email.nil? and phone.nil?
@@ -95,13 +58,5 @@ class UserSubscription < ActiveRecord::Base
       EmailVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.email
       TextVerseWorker.perform_in(scheduled_at, us.id, bible_verse.id) if us.phone
     end
-  end
-
-  def self.select_phone_carrier
-    Rails.configuration.phone_carriers.to_a.map {|c| [c[1].name, c[0]]}    
-  end
-
-  def self.select_hours
-    [['Random (8 am ~ 10 pm)', RANDOM_HOUR]] + (EARLIEST_HOUR..LASTEST_HOUR).to_a.map {|h| [Time.parse("#{h}:00").strftime("%l %P"), h ] }
-  end
+  end  
 end

@@ -6,7 +6,7 @@ class UserSubscriptionsController < ApplicationController
   # GET /user_subscriptions.json
   def index
     @user_subscriptions = UserSubscription.where(:user_id => current_user.id)
-
+    @user_subscriptions = UserSubscriptionDecorator.decorate_collection(@user_subscriptions)
 
     respond_to do |format|
 
@@ -93,6 +93,7 @@ class UserSubscriptionsController < ApplicationController
   def current_user_subscription
     @user = User.find(params[:user_id])
     return nil if current_user != @user
-    @user_subscription = UserSubscription.find(params[:id])
+    @user_subscription = UserSubscription.find(params[:id])    
+    @user_subscription = UserSubscriptionDecorator.decorate(@user_subscription)
   end
 end
