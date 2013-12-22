@@ -11,7 +11,9 @@ else
   end
   SimpleCov.coverage_dir  "#{ENV['CIRCLE_ARTIFACTS']}/simplecov"
 end
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do 
+  add_filter "app/workers/bible_crawler/"
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'

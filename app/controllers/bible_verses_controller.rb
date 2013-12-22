@@ -2,6 +2,7 @@ class BibleVersesController < ApplicationController
   def index
     @q = BibleVerse.search(params[:q])
     @bible_verses = @q.result.ordered.limit(176)
+    @bible_verses = BibleVerseDecorator.decorate_collection(@bible_verses)
     
     respond_to do |format|
       format.html      

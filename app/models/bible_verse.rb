@@ -50,14 +50,6 @@ class BibleVerse < ActiveRecord::Base
     BibleVerse.selected.offset(rand(BibleVerse.selected.count)).first
   end
 
-  def reference 
-    book+" "+chapter_num.to_s+":"+verse_num.to_s
-  end
-
-  def text_message
-    reference+' - '+content
-  end
-
   def book_to_index
     return @book_to_index unless @book_to_index.nil? or @book_to_index.empty?
     @book_to_index = Hash[EN_BOOKS.zip(EN_BOOKS.each_index.map(&1.method(:+)))]    
