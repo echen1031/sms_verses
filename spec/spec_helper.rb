@@ -44,12 +44,8 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before(:all) do    
-
   end
 
   config.before(:each) do
@@ -60,8 +56,5 @@ RSpec.configure do |config|
   config.after(:each) do
     Timecop.return
     DatabaseCleaner.clean
-  end
-
-  config.before(:suite) do    
-  end  
+  end 
 end
