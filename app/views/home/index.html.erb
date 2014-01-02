@@ -7,7 +7,7 @@
     <div class="row">
       <div class="span10">
         <p class="alert">
-          <%= @verse.content %><br><%= @verse.reference %>      
+        <%= @verse.content %><br><%= @verse.book.to_s + " " %> <%=  @verse.chapter_num.to_s + ":" %><%= @verse.verse_num %>
         </p>
       </div>
     </div>
