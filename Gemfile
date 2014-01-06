@@ -15,6 +15,8 @@ gem 'validates_email_format_of', :git => 'git://github.com/alexdunae/validates_e
 gem 'phony_rails'
 gem 'font-awesome-sass'
 gem 'rails_admin'
+gem 'high_voltage', '~> 2.1.0'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
