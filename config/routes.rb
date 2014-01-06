@@ -12,6 +12,7 @@ SmsVerses::Application.routes.draw do
    
   root :to => 'home#index'
   resources :bible_verses, :only => [:index, :show]
+  resources :pages
 
   #devise_for :admins
   devise_for :users
