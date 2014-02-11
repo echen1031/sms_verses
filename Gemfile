@@ -18,6 +18,7 @@ gem 'rails_admin'
 gem 'high_voltage', '~> 2.1.0'
 
 
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -74,6 +75,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'simplecov', :require => false
   gem 'timecop'  
+  gem 'guard-rspec', require: false
 end
 
 gem 'rails_12factor', group: :production
