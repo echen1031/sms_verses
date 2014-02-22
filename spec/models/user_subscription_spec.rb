@@ -17,7 +17,6 @@ describe UserSubscription do
 		end
 
 		it "enqueues text messag job" do 
-			user_subscription.email = nil
 			expect(TextVerseWorker).to receive(:perform_async)
 			user_subscription.send_now
 		end

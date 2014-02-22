@@ -10,7 +10,10 @@
   <% end %>
 
     <div class="form">
-          <%= f.input :email, placeholder: current_user.email %>
+          <div class="input email optional user_subscription_email">
+            <label class="control-label" for="user_subscription_email">Email</label>
+            <%= current_user.email %>
+          </div>
           <%= f.input :phone, placeholder: 'xxx-xxx-xxxx' %>
           <%= f.input :phone_carrier, collection: select_phone_carrier %>      
     </div>

@@ -18,6 +18,8 @@ class UserSubscription < ActiveRecord::Base
   belongs_to :user
   
   after_create :send_welcome_email
+
+  delegate :email, to: :user
   
   #validations
   def has_either_email_or_phone

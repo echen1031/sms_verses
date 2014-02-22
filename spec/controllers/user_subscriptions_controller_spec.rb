@@ -22,7 +22,6 @@ describe UserSubscriptionsController do
 
     post :create, user_id: @user_subscription.user.id,
       user_subscription: { 
-        email: new_user_subscription.email,
         phone: new_user_subscription.phone, 
         remind_hour: new_user_subscription.remind_hour,
         phone_carrier: @user_subscription.phone_carrier,
@@ -43,7 +42,6 @@ describe UserSubscriptionsController do
   it "update user_subscription" do
     put :update, user_id: @user_subscription.user.id, id: @user_subscription, 
       user_subscription: {
-          email: @user_subscription.email,
           phone: @user_subscription.phone,
           remind_hour: @user_subscription.remind_hour,
           phone_carrier: @user_subscription.phone_carrier }
