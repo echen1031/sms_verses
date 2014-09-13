@@ -33,7 +33,6 @@ end
 
 gem 'jquery-rails'
 
-gem 'nokogiri'
 gem 'kaminari'
 gem 'ruby-sendhub'
 gem 'choices'

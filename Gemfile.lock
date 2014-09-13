@@ -316,7 +316,6 @@ DEPENDENCIES
   high_voltage (~> 2.1.0)
   jquery-rails
   kaminari
-  nokogiri
   pg
   phony_rails
   pry-nav
