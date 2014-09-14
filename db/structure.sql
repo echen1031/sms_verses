@@ -43,7 +43,10 @@ CREATE TABLE bible_verses (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     testament character varying(255),
-    selected boolean
+    selected boolean,
+    version character varying(255),
+    char_count integer,
+    language character varying(255) DEFAULT 'en'::character varying
 );
 
 
@@ -81,12 +84,10 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE user_subscriptions (
     id integer NOT NULL,
-    email character varying(255),
     phone character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_id integer,
-    sms_id character varying(255),
     remind_hour integer,
     send_day_1 boolean DEFAULT false NOT NULL,
     send_day_2 boolean DEFAULT false NOT NULL,
@@ -95,7 +96,7 @@ CREATE TABLE user_subscriptions (
     send_day_5 boolean DEFAULT false NOT NULL,
     send_day_6 boolean DEFAULT false NOT NULL,
     send_day_7 boolean DEFAULT false NOT NULL,
-    time_zone character varying(255)
+    phone_carrier character varying(255)
 );
 
 
@@ -265,3 +266,19 @@ INSERT INTO schema_migrations (version) VALUES ('20131211054206');
 INSERT INTO schema_migrations (version) VALUES ('20131211054558');
 
 INSERT INTO schema_migrations (version) VALUES ('20131211073622');
+
+INSERT INTO schema_migrations (version) VALUES ('20131212035331');
+
+INSERT INTO schema_migrations (version) VALUES ('20131213064903');
+
+INSERT INTO schema_migrations (version) VALUES ('20131213091645');
+
+INSERT INTO schema_migrations (version) VALUES ('20131213100524');
+
+INSERT INTO schema_migrations (version) VALUES ('20131215224359');
+
+INSERT INTO schema_migrations (version) VALUES ('20131221201252');
+
+INSERT INTO schema_migrations (version) VALUES ('20131221203840');
+
+INSERT INTO schema_migrations (version) VALUES ('20140222203048');
