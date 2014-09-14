@@ -14,7 +14,7 @@ class CreateUserSubscriptions < ActiveRecord::Migration
       t.boolean  :send_day_6, default: false, null: false
       t.boolean  :send_day_7, default: false, null: false
 
-      t.string   :phone_carrier"
+      t.string   :phone_carrier
 
       t.timestamps
     end
