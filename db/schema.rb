@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140925024834) do
+ActiveRecord::Schema.define(:version => 20140925030510) do
 
   create_table "bible_verses", :force => true do |t|
     t.string   "book"
@@ -45,13 +45,14 @@ ActiveRecord::Schema.define(:version => 20140925024834) do
     t.string   "time_zone"
     t.float    "latitude"
     t.float    "longitude"
-    t.boolean  "send_day_1",             :default => false
-    t.boolean  "send_day_2",             :default => false
-    t.boolean  "send_day_3",             :default => false
-    t.boolean  "send_day_4",             :default => false
-    t.boolean  "send_day_5",             :default => false
-    t.boolean  "send_day_6",             :default => false
-    t.boolean  "send_day_7",             :default => false
+    t.boolean  "send_day_1",             :default => false, :null => false
+    t.boolean  "send_day_2",             :default => false, :null => false
+    t.boolean  "send_day_3",             :default => false, :null => false
+    t.boolean  "send_day_4",             :default => false, :null => false
+    t.boolean  "send_day_5",             :default => false, :null => false
+    t.boolean  "send_day_6",             :default => false, :null => false
+    t.boolean  "send_day_7",             :default => false, :null => false
+    t.string   "phone_carrier"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
