@@ -10,8 +10,9 @@ class User < ActiveRecord::Base
 
   geocoded_by :current_sign_in_ip, :latitude  => :latitude, :longitude => :longitude
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :phone, :remind_hour, :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7, :phone_carrier,
-  								:time_zone, :latitude, :longitude
+  attr_accessible :email, :password, :password_confirmation, :remember_me, 
+                  :phone, :remind_hour, :phone_carrier, :time_zone, :latitude, :longitude,
+                  :send_day_1, :send_day_2, :send_day_3, :send_day_4, :send_day_5, :send_day_6, :send_day_7
 
   phony_normalize :phone, :default_country_code => 'US'
 
