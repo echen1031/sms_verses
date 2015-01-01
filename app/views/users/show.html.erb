@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @user.phone %>
+  <%= @user.sms_id %>
+</p>
+
+<p>
+  <b>Carrier</b>
+  <%= Rails.configuration.phone_carriers[@user.phone_carrier].name %>
+</p>
+
+<p>
+  <b>Time</b>
+  <%= @user.readable_hour %>
+</p>
+
+<p>
+  <b>Days</b>
+  <%= @user.subscription_days %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_user_user_path(current_user, @user) %> |
+<%= link_to 'Back', user_path(current_user) %>

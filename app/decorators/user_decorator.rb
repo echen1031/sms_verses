@@ -1,4 +1,4 @@
-class UserSubscriptionDecorator < Draper::Decorator
+class UserDecorator < Draper::Decorator
 	delegate_all
 
   def readable_hour

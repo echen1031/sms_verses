@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
 
   def self.schedule_all
     logger.info 'schedule_all'
-    UserSubscription.where("remind_hour IS NOT NULL").each do |us|
+    User.where("remind_hour IS NOT NULL").each do |us|
       bible_verse = BibleVerse::random
       
       scheduled_hour = (us.remind_hour == 99) ? (8..20).to_a.sample : us.remind_hour

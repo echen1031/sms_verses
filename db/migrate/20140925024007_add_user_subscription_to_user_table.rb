@@ -1,4 +1,4 @@
-class AddUserSubscriptionToUserTable < ActiveRecord::Migration
+class AddUserToUserTable < ActiveRecord::Migration
   def change
     add_column :users, :send_day_1, :boolean, :default => false, :null => false
     add_column :users, :send_day_2, :boolean, :default => false, :null => false

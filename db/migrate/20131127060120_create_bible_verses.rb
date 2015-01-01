@@ -12,7 +12,7 @@ class CreateBibleVerses < ActiveRecord::Migration
       t.string :language
 
       t.integer :char_count
-      t.boolean :select
+      t.boolean :selected
 
       t.timestamps
     end

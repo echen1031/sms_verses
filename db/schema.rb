@@ -11,21 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140925030510) do
+ActiveRecord::Schema.define(:version => 20140925025816) do
 
   create_table "bible_verses", :force => true do |t|
+    t.string   "testament"
+    t.string   "reference"
     t.string   "book"
     t.integer  "book_num"
     t.integer  "chapter_num"
     t.integer  "verse_num"
     t.text     "content"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.string   "testament"
-    t.boolean  "selected"
     t.string   "version"
+    t.string   "language"
     t.integer  "char_count"
-    t.string   "language",    :default => "en"
+    t.boolean  "selected"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -43,8 +44,8 @@ ActiveRecord::Schema.define(:version => 20140925030510) do
     t.datetime "updated_at",                                :null => false
     t.string   "phone"
     t.string   "time_zone"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.string   "latitude"
+    t.string   "longitude"
     t.boolean  "send_day_1",             :default => false, :null => false
     t.boolean  "send_day_2",             :default => false, :null => false
     t.boolean  "send_day_3",             :default => false, :null => false
@@ -52,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20140925030510) do
     t.boolean  "send_day_5",             :default => false, :null => false
     t.boolean  "send_day_6",             :default => false, :null => false
     t.boolean  "send_day_7",             :default => false, :null => false
+    t.integer  "verse_count"
+    t.integer  "remind_hour"
     t.string   "phone_carrier"
   end
 

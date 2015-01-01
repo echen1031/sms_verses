@@ -79,10 +79,10 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: user_subscriptions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE user_subscriptions (
+CREATE TABLE users (
     id integer NOT NULL,
     phone character varying(255),
     created_at timestamp without time zone NOT NULL,
@@ -101,10 +101,10 @@ CREATE TABLE user_subscriptions (
 
 
 --
--- Name: user_subscriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE user_subscriptions_id_seq
+CREATE SEQUENCE users_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -113,10 +113,10 @@ CREATE SEQUENCE user_subscriptions_id_seq
 
 
 --
--- Name: user_subscriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE user_subscriptions_id_seq OWNED BY user_subscriptions.id;
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
@@ -174,7 +174,7 @@ ALTER TABLE ONLY bible_verses ALTER COLUMN id SET DEFAULT nextval('bible_verses_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY user_subscriptions ALTER COLUMN id SET DEFAULT nextval('user_subscriptions_id_seq'::regclass);
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
@@ -193,11 +193,11 @@ ALTER TABLE ONLY bible_verses
 
 
 --
--- Name: user_subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY user_subscriptions
-    ADD CONSTRAINT user_subscriptions_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
