@@ -11,7 +11,7 @@
               <li class="navbar"><%= link_to "Login", user_session_path %></li>
           <% else %>
             <ul class="nav">
-              <li class="navbar"><%= link_to "My Subscription", user_user_subscriptions_path(current_user.id)  %></li>
+              <li class="navbar"><%= link_to "My Subscription", user_path(current_user.id)  %></li>
               <li class="navbar"><%= link_to "Verses", bible_verses_path %></li>
               <li class="navbar"><%= link_to "FAQ", page_path('faq') %></li>
               <li class="navbar"><%= link_to "Logout", destroy_user_session_path, :method => 'DELETE' %></li>

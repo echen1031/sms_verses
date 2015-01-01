@@ -1,9 +1,9 @@
 class UpdateSendhubWorker
   include Sidekiq::Worker
-  def perform(user_subscription_id)
-  	user_subscription = UserSubscription.find(user_subscription_id)
-  	raise 'invalid request' if user_subscription.nil?
-    user_subscription.save_sendhub_user
-    user_subscription.refresh_sendhub_ids
+  def perform(user_id)
+  	user = User.find(user_id)
+  	raise 'invalid request' if user.nil?
+    user.save_sendhub_user
+    user.refresh_sendhub_ids
   end
 end

@@ -1,11 +1,6 @@
 require 'sidekiq/web'
 
 SmsVerses::Application.routes.draw do
-  
-  
-
-  
-
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   mount Sidekiq::Web, at: '/sidekiq'
@@ -25,10 +20,8 @@ SmsVerses::Application.routes.draw do
   end
 
   resources :users do   
-    resources :user_subscriptions do 
-      member do
-        get :send_now        
-      end
-    end
+    member do
+      get :send_now        
+    end    
   end
 end

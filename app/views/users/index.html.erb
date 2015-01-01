@@ -1,0 +1,27 @@
+<div class="page-header"></div>
+<h1><%='My Subscription'%></h1>
+<table border = "1" class="table table-bordered table-striped">
+  <tr>
+    <th></th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Carrier</th>
+    <th>Time</th>
+    <th>Days</th>
+    <th></th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td>
+      <%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_user_path(current_user.id, user.id), :class => 'btn btn-success' %>
+      <%= link_to '<i class="icon-remove"></i> Remove'.html_safe, user_user_path(current_user.id, user.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>      
+    </td>
+    <td><%= user.email %></td>
+    <td><%= user.phone %></td>
+    <td><%= Rails.configuration.phone_carriers[user.phone_carrier].name %></td>
+    <td><%= user.readable_hour  %></td>
+    <td><%= user.subscription_days %></td>
+    <td><%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_user_path(current_user.id, user.id), :class => 'btn btn-primary' %></td>    
+  </tr>
+  <% end %>
+</table>
