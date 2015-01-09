@@ -75,6 +75,7 @@ group :test do
   gem 'simplecov', :require => false
   gem 'timecop'  
   gem 'guard-rspec', require: false
+  gem 'capybara', '~> 2.3.0'
 end
 
 gem 'rails_12factor', group: :production
