@@ -1,26 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @user.phone %>
-</p>
-
-<p>
-  <b>Carrier</b>
-</p>
-
-<p>
-  <b>Time</b>
-</p>
-
-<p>
-  <b>Days</b>
-</p>
-
-
-
+<div class="page-header"></div>
+<h1><%='My Subscription'%></h1>
+</br>
+<table border = "1" class="table table-bordered table-striped">
+  <tr>
+    <th></th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Carrier</th>
+    <th>Time</th>
+    <th>Days</th>
+    <th></th>
+  </tr>
+    <tr>
+    <td>
+      <%= link_to '<i class="icon-edit"></i> Edit'.html_safe, edit_user_path(@user), :class => 'btn btn-success' %>
+    </td>
+    <td><%= @user.email %></td>
+    <td><%= @user.phone %></td>
+    <td><%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_path(@user.id), :class => 'btn btn-primary' %></td>    
+  </tr>
+</table>

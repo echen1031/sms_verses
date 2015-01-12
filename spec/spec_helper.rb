@@ -23,6 +23,9 @@ require 'rspec/autorun'
 
 #capybara
 require 'capybara/rspec'
+def user
+  @user ||= create(:user)
+end
 
 
 # Requires supporting ruby files with custom matchers and macros, etc,
