@@ -13,13 +13,11 @@ class BibleCrawler::RecoveryChCrawler
 
     chapters.each do |chapter_num|
       doc = Nokogiri::HTML(open(URL+"/Docs/cnenbible/#{chapter_num}.htm"))
-      binding.pry
       title = doc.css('table .title6')[0].text
       book = title.split('-')[0]
       
       doc.css('table')[1].css('td.td').each_with_index do |entry, i|
         if i % 2 == 0
-          binding.pry
           reference = entry.text
           (chapter_num, verse_num) = reference.split(':')              
         elsif i % 2 == 1
