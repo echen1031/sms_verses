@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
 
   phony_normalize :phone, :default_country_code => 'US'
 
-  validates_inclusion_of :phone_carrier, :in => Rails.configuration.phone_carriers.keys
   validates_numericality_of :phone, :remind_hour
   validates :email, :email_format => {:message => 'does not look valid'}
   validates :phone, :phony_plausible => true

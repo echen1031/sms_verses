@@ -46,7 +46,8 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     respond_to do |format|
-      if current_user.update_attributes(params[:user])
+      @user = current_user
+      if @user.update_attributes(params[:user])
         format.html { redirect_to user_path(current_user.id), 
           notice: 'User subscription was successfully updated.' }
         format.json { head :no_content }

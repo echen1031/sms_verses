@@ -51,7 +51,7 @@
         <%= f.submit 'Create', :class => 'btn btn-primary'%>
       <% else %>
         <%= f.submit 'Update', :class => 'btn btn-primary'%>
-        <%= link_to '<i class="icon-circle-arrow-left"></i> Back'.html_safe, user_path(current_user), :class => 'btn btn-success' %>
+        <%= link_to '<i class="icon-circle-arrow-left"></i> Back'.html_safe, user_path(@user), :class => 'btn btn-success' %>
       <% end %>
     </div>
       <% end %>
