@@ -34,7 +34,12 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit    
+  def edit 
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: current_user }
+    end
   end
 
   # PUT /users/1
