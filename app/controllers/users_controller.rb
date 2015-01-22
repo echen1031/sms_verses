@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :current_user
+  decorates_assigned :user
   # GET /users
   # GET /users.json
   def index

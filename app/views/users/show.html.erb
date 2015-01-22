@@ -6,7 +6,6 @@
     <th></th>
     <th>Email</th>
     <th>Phone</th>
-    <th>Carrier</th>
     <th>Time</th>
     <th>Days</th>
     <th></th>
@@ -17,6 +16,8 @@
     </td>
     <td><%= @user.email %></td>
     <td><%= @user.phone %></td>
+    <td><%= user.readable_hour %></td>
+    <td><%= user.subscription_days %></td>
     <td><%= link_to '<i class="icon-circle-arrow-up"></i> Test'.html_safe, send_now_user_path(@user.id), :class => 'btn btn-primary' %></td>    
   </tr>
 </table>
