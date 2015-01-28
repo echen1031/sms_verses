@@ -14,6 +14,6 @@ describe UserDecorator do
   end
 
   it "return friendly days" do 
-    expect(decorated_user.subscription_days).to eq 'Sun Wed'
+    expect(decorated_user.subscription_days).to eq 'Sun / Wed'
   end
 end
