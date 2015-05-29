@@ -12,6 +12,11 @@ describe UsersController do
     assert_not_nil assigns(:users)
   end
 
+  it "get new" do
+    get :new, id: @user.id
+    expect(response).to be_success
+  end
+
   it "show user" do
     get :show, id: @user.id
     expect(response).to be_success
@@ -23,11 +28,9 @@ describe UsersController do
   end
 
   it "update user" do
-    put :update, id: @user.id, user: {
-      phone: @user.phone,
-      remind_hour: @user.remind_hour,
-      phone_carrier: @user.phone_carrier }
-
-      expect(response).to redirect_to user_path(@user)    
+    put :update, id: @user.id, user: FactoryGirl.attributes_for(:user, phone: "4047176779")
+      @user.reload
+      expect(@user.phone).to eq("14047176779")
+      expect(response).to redirect_to user_path(@user)
   end
 end

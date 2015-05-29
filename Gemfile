@@ -65,6 +65,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'pry-rails'
   gem 'pry-nav'
+  gem 'letter_opener'
 end
 
 group :test do
@@ -75,6 +76,7 @@ group :test do
   gem 'simplecov', :require => false
   gem 'timecop'  
   gem 'guard-rspec', require: false
+  gem 'capybara', '~> 2.3.0'
 end
 
 gem 'rails_12factor', group: :production

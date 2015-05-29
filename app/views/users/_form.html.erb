@@ -1,4 +1,4 @@
-<%= simple_form_for([current_user, @user], html: {class: "well"}) do |f| %>
+<%= simple_form_for @user, html: {class: "well"} do |f| %>
   <% if @user.errors.any? %> <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
       <ul>
@@ -11,8 +11,8 @@
 
     <div class="form">
           <div class="input email optional user_email">
-            <label class="control-label" for="user_email">Email</label>
-            <%= current_user.email %>
+            <%= f.input :email, placeholder: "#{@user.email}" %>
+            <%= f.input :phone, placeholder: "#{@user.phone}" %>
           </div>
     </div>
     <br>
@@ -51,7 +51,7 @@
         <%= f.submit 'Create', :class => 'btn btn-primary'%>
       <% else %>
         <%= f.submit 'Update', :class => 'btn btn-primary'%>
-        <%= link_to '<i class="icon-circle-arrow-left"></i> Back'.html_safe, user_path(current_user), :class => 'btn btn-success' %>
+        <%= link_to '<i class="icon-circle-arrow-left"></i> Back'.html_safe, user_path(@user), :class => 'btn btn-success' %>
       <% end %>
     </div>
       <% end %>
